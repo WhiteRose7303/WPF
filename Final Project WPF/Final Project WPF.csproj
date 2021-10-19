@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>Final_Project_WPF</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="IMGS\Icons\Client.ico" />
+    <None Remove="IMGS\Icons\client.jpg" />
+    <None Remove="IMGS\Icons\Client.png" />
+    <None Remove="IMGS\Icons\Exit.png" />
+    <None Remove="IMGS\Icons\power symb.png" />
+    <None Remove="IMGS\Icons\power_symb-removebg-preview.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="IMGS\Icons\Client.ico" />
+    <Content Include="IMGS\Icons\client.jpg" />
+    <Content Include="IMGS\Icons\Client.png" />
+    <Content Include="IMGS\Icons\Exit.png" />
+    <Content Include="IMGS\Icons\power symb.png" />
+    <Content Include="IMGS\Icons\power_symb-removebg-preview.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WpfLibrary\WpfLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
