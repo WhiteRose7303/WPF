@@ -1,9 +1,9 @@
-﻿using WpfLibrary.DAL;
+﻿using Final_Project_WPF.DAL;
 using System.Collections;
 using System.Data;
 
 
-namespace WpfLibrary.BL
+namespace Final_Project_WPF.BL
 {
     public class ClientArr : ArrayList
     {
