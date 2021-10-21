@@ -163,23 +163,24 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="128*" />
                 <ColumnDefinition Width="93*" />
-                <ColumnDefinition Width="499*" />
+                <ColumnDefinition Width="245*" />
+                <ColumnDefinition Width="252*"/>
                 <ColumnDefinition Width="80*" />
             </Grid.ColumnDefinitions>
 
             <Label x:Name="Client_Registor" Content="Client Register" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="181" FontSize="24" Grid.ColumnSpan="2" />
 
 
-            <ListBox x:Name="ListBox_Client" Grid.Column="2" Margin="231,64,47,111" Grid.ColumnSpan="2" MouseDoubleClick="ListBox_Client_MouseDoubleClick"/>
+            <ListBox x:Name="ListBox_Client" Grid.Column="2" Margin="231,64,47,111" Grid.ColumnSpan="3" MouseDoubleClick="ListBox_Client_MouseDoubleClick"/>
 
 
-            <Label Content="Clients" Grid.Column="2" HorizontalAlignment="Left" Margin="234,20,0,0" VerticalAlignment="Top" Width="83" FontSize="20" Background="White" />
+            <Label Content="Clients" Grid.Column="2" HorizontalAlignment="Left" Margin="234,20,0,0" VerticalAlignment="Top" Width="83" FontSize="20" Background="White" Grid.ColumnSpan="2" />
 
-            <Button Style="{DynamicResource RoundedButton}" x:Name="save" Grid.Column="2" HorizontalAlignment="Left" Margin="449,471,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Save_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Grid.ColumnSpan="2" Background="#FF63CCF1" >
+            <Button Style="{DynamicResource RoundedButton}" x:Name="save" Grid.Column="3" HorizontalAlignment="Left" Margin="202,471,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Save_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Grid.ColumnSpan="2" Background="#FF63CCF1" >
                 <Label Content="Save"/>
             </Button>
 
-            <Button x:Name="Cancel" Content="Exit" Grid.Column="2" HorizontalAlignment="Left" Margin="219,471,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Cancel_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FF63CCF1" />
+            <Button x:Name="Cancel" Content="Exit" Grid.Column="2" HorizontalAlignment="Left" Margin="219,471,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Cancel_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FF63CCF1" Grid.ColumnSpan="2" />
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="m_FirstName" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="m_FirstName_KeyUp" />
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="m_LastName" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" />
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="m_ZipCode" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" />
@@ -191,11 +192,11 @@
             <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
             <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
             <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,486,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+            <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,486,0,0" VerticalAlignment="Top"/>
 
-            <Button x:Name="Clear"  Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Margin="106,23,0,0" VerticalAlignment="Top" Height="25" Width="65" Click="Clear_Click" AutomationProperties.AccessKey=""  AutomationProperties.Name="Save"  Background="White" Style="{DynamicResource RoundedButton}" />
+            <Button x:Name="Clear"  Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Margin="106,24,0,0" VerticalAlignment="Top" Height="25" Width="65" Click="Clear_Click" AutomationProperties.AccessKey=""  AutomationProperties.Name="Save"  Background="White" />
 
-            <Button x:Name="delete" Content="Delete" Grid.Column="2" HorizontalAlignment="Left" Margin="249,443,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Hidden"/>
+            <Button x:Name="delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="2,443,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Hidden"/>
         </Grid>
     </Border>
 </Window>

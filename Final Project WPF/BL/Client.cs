@@ -1,6 +1,7 @@
 ﻿using Final_Project_WPF.DAL;
 using System.Collections;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Final_Project_WPF.BL
 {
@@ -11,6 +12,7 @@ namespace Final_Project_WPF.BL
         private string m_ZipCode;
         private string m_Phone;
         private int m_ID;
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
 
         public string FirstName { get => m_FirstName; set => m_FirstName = value; }
         public string LastName { get => m_LastName; set => m_LastName = value; }
@@ -21,6 +23,9 @@ namespace Final_Project_WPF.BL
         public void Insert()
         {
             Client_Dal.Insert(m_FirstName, m_LastName, m_ZipCode, m_Phone);
+         
+            
+
         }
 
         public Client()

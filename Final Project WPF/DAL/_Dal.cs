@@ -11,7 +11,7 @@ class Dal
     public static bool ExecuteSql(string sql)
     {
         //מקשר
-        SqlConnection connection = new SqlConnection();
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
         //הצבת מחרוזת הקישור במקשר - שימוש בפעולת עזר למציאת מחרוזת זאת
         connection.ConnectionString = GetConnectionString();
 
@@ -48,7 +48,7 @@ class Dal
     {
         //מקשר
 
-        //using System.Data.SqlClient;
+        
 
         SqlConnection connection = new SqlConnection();
         //הצבת מחרוזת הקישור במקשר
@@ -75,7 +75,7 @@ class Dal
         SqlConnectionStringBuilder cString = new SqlConnectionStringBuilder();
 
         cString.DataSource = @"(localdb)\.";
-        cString.AttachDBFilename = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + @"\DB.mdf";
+        cString.AttachDBFilename = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + @"\Database1.mdf";
 
 
         return cString.ToString();

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Windows;
 
 namespace Final_Project_WPF.DAL
 {
@@ -41,7 +42,7 @@ namespace Final_Project_WPF.DAL
             DataTable dataTable = null;
             DataSet dataSet = new DataSet();
             FillDataSet(dataSet);
-            dataTable = dataSet.Tables["Table_Client"];
+            dataTable = dataSet.Tables["wpfclient"];
             return dataTable;
         }
 
@@ -60,7 +61,7 @@ namespace Final_Project_WPF.DAL
         public static void FillDataSet(DataSet dataSet)
         {
             //ממלאת את אוסף הטבלאות בטבלת הלקוחות
-            Dal.FillDataSet(dataSet, "Table_Client", "[LastName],[FirstName]");
+            Dal.FillDataSet(dataSet, "clientstab", "[LastName],[FirstName]");
             //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
         }
     }

@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DB.mdf" />
-    <None Remove="DB_log.ldf" />
     <None Remove="IMGS\Icons\Client.ico" />
     <None Remove="IMGS\Icons\client.jpg" />
     <None Remove="IMGS\Icons\Client.png" />
@@ -19,13 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="DB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DB.mdf</DependentUpon>
-    </Content>
     <Content Include="IMGS\Icons\Client.ico" />
     <Content Include="IMGS\Icons\client.jpg" />
     <Content Include="IMGS\Icons\Client.png" />
