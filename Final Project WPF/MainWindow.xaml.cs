@@ -25,14 +25,20 @@ namespace Final_Project_WPF
             if ((MessageBox.Show("Debug purposes Fill DB?", "Fill DB", MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes))
             {
-                for (int i = 0; i < 1000; i++)
+                //clear table
+                for (int i = 0; i < 1000; i++) 
                 {
                     Client_Dal.Delete(i);
                 }
+                //reseed
+                //Client_Dal.reseed();
+                //fill debug dataS
                 Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567");
                 Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567");
                 Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567");
                 Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567");
+                
+
             }
             ClientArrToForm();
         }

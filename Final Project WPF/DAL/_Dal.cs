@@ -2,19 +2,16 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Data.SqlTypes;
 
-
-class Dal
+internal class Dal
 {
-    //test
+    
     public static bool ExecuteSql(string sql)
     {
         //מקשר
         SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
         //הצבת מחרוזת הקישור במקשר - שימוש בפעולת עזר למציאת מחרוזת זאת
         connection.ConnectionString = GetConnectionString();
-
 
         //ההוראה
         SqlCommand command = new SqlCommand();
@@ -48,8 +45,6 @@ class Dal
     {
         //מקשר
 
-        
-
         SqlConnection connection = new SqlConnection();
         //הצבת מחרוזת הקישור במקשר
         connection.ConnectionString = GetConnectionString();
@@ -61,7 +56,6 @@ class Dal
             command.CommandText = "SELECT * FROM " + tableName + " ORDER BY " + orderBy;
         else
             command.CommandText = "SELECT * FROM " + tableName;
-
 
         //מתאם
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -77,7 +71,6 @@ class Dal
 
         cString.DataSource = @"(localdb)\.";
         cString.AttachDBFilename = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + @"\Database1.mdf";
-
 
         return cString.ToString();
     }

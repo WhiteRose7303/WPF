@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Windows;
 
 namespace Final_Project_WPF.DAL
 {
@@ -24,7 +23,6 @@ namespace Final_Project_WPF.DAL
 
         public static bool Update(int id, string firstName, string lastName, string zipCode, string Phone)
         {
-
             //מעדכנת את הלקוח במסד הנתונים
 
             string str = "UPDATE Clientstab SET"
@@ -48,7 +46,6 @@ namespace Final_Project_WPF.DAL
 
         public static bool Delete(int id)
         {
-
             //מוחקת את הלקוח ממסד הנתונים
 
             string str = $"DELETE FROM Clientstab WHERE ID = {id}";
@@ -56,7 +53,6 @@ namespace Final_Project_WPF.DAL
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
 
             return Dal.ExecuteSql(str);
-            
         }
 
         public static void FillDataSet(DataSet dataSet)
@@ -64,6 +60,12 @@ namespace Final_Project_WPF.DAL
             //ממלאת את אוסף הטבלאות בטבלת הלקוחות
             Dal.FillDataSet(dataSet, "Clientstab", "[LastName],[FirstName]");
             //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
+        }
+
+        public static void reseed()
+        {
+            string str = $"DBCC CHECKIDENT (@\"clientstab\", RESEED, 0)";
+            Dal.ExecuteSql(str);
         }
     }
 }
