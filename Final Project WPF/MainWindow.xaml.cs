@@ -20,6 +20,7 @@ namespace Final_Project_WPF
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            ClientArrToForm();
         }
 
         private Client FromToClient()
@@ -127,7 +128,7 @@ namespace Final_Project_WPF
 
             ClientArr clientArr = new ClientArr();
             clientArr.Fill();
-            ListBox_Client.DataContext = clientArr;
+            ListBox_Client.ItemsSource = clientArr;
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -150,6 +151,7 @@ namespace Final_Project_WPF
             m_LastName.Clear();
             m_ZipCode.Clear();
             m_Phone.Clear();
+            IDLabel.Content = "0";
         }
 
         private void ClientToForm(Client client)
@@ -183,7 +185,7 @@ namespace Final_Project_WPF
                 {
                     if (client.Delete())
                     {
-                        MessageBox.Show("deleted sucsesfully");
+                        Delete.IsEnabled = false;
                     }
                     else
                     {
@@ -194,17 +196,19 @@ namespace Final_Project_WPF
                     ClientArrToForm();
                 }
             }
+            client.ID = 0;
+            ClientArrToForm();
         }
 
         private void ListBox_Client_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ClientToForm(ListBox_Client.SelectedItem as Client);
-            //Delete.Visible = true;
+            Delete.IsEnabled = true;
         }
 
         private void m_FirstName_KeyUp(object sender, KeyEventArgs e)
         {
-            /*ClientArr clientArr = new ClientArr();
+            ClientArr clientArr = new ClientArr();
             clientArr.Fill();
 
             //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
@@ -213,7 +217,7 @@ namespace Final_Project_WPF
             m_Phone.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
-            ListBox_Client.DataContext = clientArr;*/
+            ListBox_Client.DataContext = clientArr;
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -221,6 +225,5 @@ namespace Final_Project_WPF
             clear();
         }
 
-        
     }
 }

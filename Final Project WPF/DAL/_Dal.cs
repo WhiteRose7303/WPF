@@ -71,6 +71,7 @@ class Dal
 
     private static string GetConnectionString()
     {
+        return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf';Integrated Security=True";
         //בניית מחרוזת הקישור
         SqlConnectionStringBuilder cString = new SqlConnectionStringBuilder();
 

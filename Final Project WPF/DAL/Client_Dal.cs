@@ -10,7 +10,7 @@ namespace Final_Project_WPF.DAL
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
 
-            string str = "INSERT INTO Table_Client"
+            string str = "INSERT INTO Clientstab"
             + "("
             + "[FirstName],[LastName],[ZipCode], [phone]"
             + ")"
@@ -27,7 +27,7 @@ namespace Final_Project_WPF.DAL
 
             //מעדכנת את הלקוח במסד הנתונים
 
-            string str = "UPDATE Table_Client SET"
+            string str = "UPDATE Clientstab SET"
             + $" [FirstName] = N'{firstName}'"
             + $",[LastName] = N'{lastName}'"
             + $",[Phone] = '{Phone}'"
@@ -42,7 +42,7 @@ namespace Final_Project_WPF.DAL
             DataTable dataTable = null;
             DataSet dataSet = new DataSet();
             FillDataSet(dataSet);
-            dataTable = dataSet.Tables["wpfclient"];
+            dataTable = dataSet.Tables["Clientstab"];
             return dataTable;
         }
 
@@ -51,17 +51,18 @@ namespace Final_Project_WPF.DAL
 
             //מוחקת את הלקוח ממסד הנתונים
 
-            string str = $"DELETE FROM Table_Client WHERE ID = {id}";
+            string str = $"DELETE FROM Clientstab WHERE ID = {id}";
 
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
 
             return Dal.ExecuteSql(str);
+            
         }
 
         public static void FillDataSet(DataSet dataSet)
         {
             //ממלאת את אוסף הטבלאות בטבלת הלקוחות
-            Dal.FillDataSet(dataSet, "clientstab", "[LastName],[FirstName]");
+            Dal.FillDataSet(dataSet, "Clientstab", "[LastName],[FirstName]");
             //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
         }
     }
