@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Final_Project_WPF.BL;
+using Final_Project_WPF.DAL;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Final_Project_WPF.BL;
+
 namespace Final_Project_WPF
 {
     /// <summary>
@@ -20,18 +22,30 @@ namespace Final_Project_WPF
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            if ((MessageBox.Show("Debug purposes Fill DB?", "Fill DB", MessageBoxButton.YesNo,
+                MessageBoxImage.Warning) == MessageBoxResult.Yes))
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    Client_Dal.Delete(i);
+                }
+                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567");
+                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567");
+                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567");
+                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567");
+            }
             ClientArrToForm();
         }
 
         private Client FromToClient()
         {
             Client Client = new Client();
-            Client.FirstName = m_FirstName.Text;
-            Client.LastName = m_LastName.Text;
-            Client.Phone = m_Phone.Text;
+            Client.FirstName = TB_FirstName.Text;
+            Client.LastName = TB_LastName.Text;
+            Client.Phone = TB_Phone.Text;
             Client.ID = int.Parse((string)IDLabel.Content);
-            if (m_ZipCode.Text != "")
-                Client.ZipCode = m_ZipCode.Text;
+            if (TB_ZipCode.Text != "")
+                Client.ZipCode = TB_ZipCode.Text;
             return Client;
         }
 
@@ -52,10 +66,10 @@ namespace Final_Project_WPF
 
                     client.Insert();
 
-                    m_FirstName.BorderBrush = Brushes.Green;
-                    m_LastName.BorderBrush = Brushes.Green;
-                    m_ZipCode.BorderBrush = Brushes.Green;
-                    m_Phone.BorderBrush = Brushes.Green;
+                    TB_FirstName.BorderBrush = Brushes.Green;
+                    TB_LastName.BorderBrush = Brushes.Green;
+                    TB_ZipCode.BorderBrush = Brushes.Green;
+                    TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
                 }
@@ -64,14 +78,14 @@ namespace Final_Project_WPF
             {
                 //עדכון לקוח קיים
 
-                if (client.Update())
+                if (client.Update() && CheckForm())
                 {
                     ClientArrToForm();
 
-                    m_FirstName.BorderBrush = Brushes.Green;
-                    m_LastName.BorderBrush = Brushes.Green;
-                    m_ZipCode.BorderBrush = Brushes.Green;
-                    m_Phone.BorderBrush = Brushes.Green;
+                    TB_FirstName.BorderBrush = Brushes.Green;
+                    TB_LastName.BorderBrush = Brushes.Green;
+                    TB_ZipCode.BorderBrush = Brushes.Green;
+                    TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
                 }
@@ -92,33 +106,33 @@ namespace Final_Project_WPF
         private bool CheckForm()
         {
             bool flag = true;
-            if (m_FirstName.Text.Length < 2)
+            if (TB_FirstName.Text.Length < 2)
             {
                 flag = false;
-                m_FirstName.BorderBrush = Brushes.Red;
-                m_FirstName.Focus();
+                TB_FirstName.BorderBrush = Brushes.Red;
+                TB_FirstName.Focus();
             }
             else
-                m_FirstName.BorderBrush = Brushes.Silver;
+                TB_FirstName.BorderBrush = Brushes.Silver;
 
-            if (m_ZipCode.Text.Length != 7)
+            if (TB_ZipCode.Text.Length != 7)
             {
                 flag = false;
-                m_ZipCode.BorderBrush = Brushes.Red;
-                m_ZipCode.Focus();
+                TB_ZipCode.BorderBrush = Brushes.Red;
+                TB_ZipCode.Focus();
             }
             else
-                m_ZipCode.BorderBrush = Brushes.Silver;
+                TB_ZipCode.BorderBrush = Brushes.Silver;
 
-            if (m_Phone.Text.Length != 10)
+            if (TB_Phone.Text.Length != 10)
             {
                 flag = false;
-                m_Phone.BorderBrush = Brushes.Red;
-                m_Phone.Focus();
+                TB_Phone.BorderBrush = Brushes.Red;
+                TB_Phone.Focus();
             }
             else
-                m_Phone.BorderBrush = Brushes.Silver;
-
+                TB_Phone.BorderBrush = Brushes.Silver;
+            dispatcherTimer.Start();
             return flag;
         }
 
@@ -133,10 +147,10 @@ namespace Final_Project_WPF
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            m_FirstName.BorderBrush = Brushes.Silver;
-            m_LastName.BorderBrush = Brushes.Silver;
-            m_ZipCode.BorderBrush = Brushes.Silver;
-            m_Phone.BorderBrush = Brushes.Silver;
+            TB_FirstName.BorderBrush = Brushes.Silver;
+            TB_LastName.BorderBrush = Brushes.Silver;
+            TB_ZipCode.BorderBrush = Brushes.Silver;
+            TB_Phone.BorderBrush = Brushes.Silver;
             if (insert == true)
             {
                 clear();
@@ -147,11 +161,12 @@ namespace Final_Project_WPF
 
         private void clear()
         {
-            m_FirstName.Clear();
-            m_LastName.Clear();
-            m_ZipCode.Clear();
-            m_Phone.Clear();
+            TB_FirstName.Clear();
+            TB_LastName.Clear();
+            TB_ZipCode.Clear();
+            TB_Phone.Clear();
             IDLabel.Content = "0";
+            insert = false;
         }
 
         private void ClientToForm(Client client)
@@ -160,10 +175,10 @@ namespace Final_Project_WPF
             if (client != null)
             {
                 IDLabel.Content = client.ID.ToString();
-                m_FirstName.Text = client.FirstName;
-                m_LastName.Text = client.LastName;
-                m_ZipCode.Text = client.ZipCode.ToString();
-                m_Phone.Text = client.Phone;
+                TB_FirstName.Text = client.FirstName;
+                TB_LastName.Text = client.LastName;
+                TB_ZipCode.Text = client.ZipCode.ToString();
+                TB_Phone.Text = client.Phone;
             }
             else
             {
@@ -206,15 +221,15 @@ namespace Final_Project_WPF
             Delete.IsEnabled = true;
         }
 
-        private void m_FirstName_KeyUp(object sender, KeyEventArgs e)
+        private void TB_FirstName_KeyUp(object sender, KeyEventArgs e)
         {
             ClientArr clientArr = new ClientArr();
             clientArr.Fill();
 
             //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
 
-            clientArr = clientArr.Filter(m_FirstName.Text,
-            m_Phone.Text);
+            clientArr = clientArr.Filter(TB_FirstName.Text,
+            TB_Phone.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
             ListBox_Client.DataContext = clientArr;
@@ -224,6 +239,5 @@ namespace Final_Project_WPF
         {
             clear();
         }
-
     }
 }
