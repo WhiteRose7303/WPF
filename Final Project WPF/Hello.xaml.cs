@@ -11,6 +11,11 @@ namespace Final_Project_WPF
         {
             InitializeComponent();
             Registor.IsEnabled = false;
+            /*
+            MainWindow h = new MainWindow();
+            h.Show();
+            this.Close();
+            */
         }
 
         private void Registor_Click(object sender, RoutedEventArgs e)

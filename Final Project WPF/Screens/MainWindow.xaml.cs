@@ -2,10 +2,15 @@
 using Final_Project_WPF.DAL;
 using System;
 using System.Linq;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Net.Mail;
+using System.Net;
+using System.Configuration;
+using System.IO;
 
 namespace Final_Project_WPF
 {
@@ -24,7 +29,7 @@ namespace Final_Project_WPF
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //debug
-            DebugFill();
+            //DebugFill();
 
             ClientArrToForm();
         }
@@ -42,11 +47,11 @@ namespace Final_Project_WPF
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567","1","1234","1");
-                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","0", "0","1");
-                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","0", "0","1");
-                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","0", "0","1");
-                Client_Dal.Insert("rony", "old", "1234567", "0500000000", "0", "1234","0");
+                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567", "1", "1234", "1", "me@hadarov.com");
+                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567", "0", "0", "1", "test");
+                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567", "0", "0", "1", "test@gmail.com");
+                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567", "0", "0", "1", "test");
+                Client_Dal.Insert("rony", "old", "1234567", "0500000000", "0", "1234", "0", "rony@test.com");
             }
         }
 
@@ -56,6 +61,7 @@ namespace Final_Project_WPF
             Client.FirstName = TB_FirstName.Text;
             Client.LastName = TB_LastName.Text;
             Client.Phone = TB_Phone.Text;
+            Client.Email = Email.Text;
             Client.ID = int.Parse((string)IDLabel.Content);
             Client.Pass = Password.Text;
             if (Is_admin.IsChecked == true)
@@ -102,6 +108,7 @@ namespace Final_Project_WPF
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
+                    SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, TB_ZipCode.Text, TB_Phone.Text, Password.Text);
                 }
             }
             else
@@ -118,6 +125,7 @@ namespace Final_Project_WPF
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
+                    updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, TB_ZipCode.Text, TB_Phone.Text, Password.Text);
                 }
                 else
                 {
@@ -210,6 +218,7 @@ namespace Final_Project_WPF
             TB_ZipCode.Clear();
             TB_Phone.Clear();
             Password.Clear();
+            Email.Clear();
             Is_admin.IsChecked = false;
             aproved.IsChecked = false;
             IDLabel.Content = "0";
@@ -225,6 +234,7 @@ namespace Final_Project_WPF
                 IDLabel.Content = client.ID.ToString();
                 TB_FirstName.Text = client.FirstName;
                 TB_LastName.Text = client.LastName;
+                Email.Text = client.Email;
                 TB_ZipCode.Text = client.ZipCode.ToString();
                 TB_Phone.Text = client.Phone;
                 Password.Text = client.Pass.ToString();
@@ -315,5 +325,57 @@ namespace Final_Project_WPF
             he.Show();
             this.Close();
         }
+
+        private void SendEmail(string email, string first, string last, string zipcode, string phone, string password)
+        {
+            
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("hadarovadiaschoolmanagment@gmail.com", "hadarwpf1234"),
+                EnableSsl = true,
+
+            };
+            var mailmessage = new MailMessage()
+            {
+                
+                From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
+                Subject = "Your Registration Has Been Successfull!",
+                Body = "<h1>Great you are now registerd</h1>",
+                IsBodyHtml = true,
+                
+            };
+            
+            mailmessage.To.Add(email);
+
+            smtpClient.Send(mailmessage);
+
+
+
+        }
+
+        private void updateemail(string em, string first, string last, string zipcode, string phone, string password)
+        {
+            {
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("hadarovadiaschoolmanagment@gmail.com", "hadarwpf1234"),
+                    EnableSsl = true,
+
+                };
+                var mailmessage = new MailMessage()
+                {
+                    From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
+                    Subject = "Your Acount Has Been Updated!",
+                    Body = "<h1>Coming Soon</h1>",
+                    IsBodyHtml = true,
+                };
+                mailmessage.To.Add(em);
+
+                smtpClient.Send(mailmessage);
+            }
+        }
+       
     }
 }

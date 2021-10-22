@@ -358,12 +358,14 @@
 
             <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="4,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
             <Button x:Name="Go_back" Content="Go back" HorizontalAlignment="Left" Margin="28,510,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="Go_Back_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" Grid.ColumnSpan="2" />
-            <Label Content="Is Admin" HorizontalAlignment="Left" Margin="22,354,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,361,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" Height="15"/>
+            <Label Content="Is Admin" Margin="22,403,50,0" VerticalAlignment="Top" BorderBrush="Black"/>
+            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,410,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" Height="15"/>
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Password" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="92,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,306,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <Label Content="Admin Aproved" HorizontalAlignment="Left" Margin="31,355,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Grid.ColumnSpan="2" Width="98"/>
-            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="41,362,0,0" VerticalAlignment="Top" Width="73" Height="15" Grid.Column="2"/>
+            <Label Content="Admin Aproved" HorizontalAlignment="Left" Margin="31,404,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Grid.ColumnSpan="2" Width="98"/>
+            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="41,411,0,0" VerticalAlignment="Top" Width="73" Height="15" Grid.Column="2"/>
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Email" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="91,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
+            <Label Content="Email&#xA;" HorizontalAlignment="Left" Margin="19,357,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
 
         </Grid>
     </Border>
