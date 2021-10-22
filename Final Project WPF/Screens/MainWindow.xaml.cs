@@ -1,6 +1,7 @@
 ﻿using Final_Project_WPF.BL;
 using Final_Project_WPF.DAL;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -23,7 +24,7 @@ namespace Final_Project_WPF
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //debug
-            //DebugFill();
+            DebugFill();
 
             ClientArrToForm();
         }
@@ -45,7 +46,7 @@ namespace Final_Project_WPF
                 Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","0", "0","1");
                 Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","0", "0","1");
                 Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","0", "0","1");
-                Client_Dal.Insert("rony", "old", "1234567", "0000000000", "0", "1234","0");
+                Client_Dal.Insert("rony", "old", "1234567", "0500000000", "0", "1234","0");
             }
         }
 
@@ -136,7 +137,8 @@ namespace Final_Project_WPF
         private bool CheckForm()
         {
             bool flag = true;
-            if (TB_FirstName.Text.Length < 2)
+            bool containsInt1 = TB_FirstName.Text.ToString().Any(char.IsDigit);
+            if (TB_FirstName.Text.Length < 2 || containsInt1)
             {
                 flag = false;
                 TB_FirstName.BorderBrush = Brushes.Red;
@@ -144,8 +146,19 @@ namespace Final_Project_WPF
             }
             else
                 TB_FirstName.BorderBrush = Brushes.Silver;
-
-            if (TB_ZipCode.Text.Length != 7)
+            bool containsInt2 = TB_LastName.Text.ToString().Any(char.IsDigit);
+            if (TB_LastName.Text.Length < 2 || containsInt2)
+            {
+                flag = false;
+                TB_LastName.BorderBrush = Brushes.Red;
+                TB_LastName.Focus();
+            }
+            else
+            {
+                TB_LastName.BorderBrush = Brushes.Silver;
+            }
+            bool containschar = TB_ZipCode.Text.ToString().Any(char.IsDigit);
+            if (TB_ZipCode.Text.Length != 7 || !containschar)
             {
                 flag = false;
                 TB_ZipCode.BorderBrush = Brushes.Red;
@@ -153,8 +166,9 @@ namespace Final_Project_WPF
             }
             else
                 TB_ZipCode.BorderBrush = Brushes.Silver;
+            string phone = TB_Phone.Text.ToString();
 
-            if (TB_Phone.Text.Length != 10)
+            if (TB_Phone.Text.Length != 10 || phone[0] != '0' || phone[1] != '5')
             {
                 flag = false;
                 TB_Phone.BorderBrush = Brushes.Red;
