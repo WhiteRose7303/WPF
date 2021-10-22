@@ -10,6 +10,7 @@ namespace Final_Project_WPF
         public Hello()
         {
             InitializeComponent();
+            Registor.IsEnabled = false;
         }
 
         private void Registor_Click(object sender, RoutedEventArgs e)
@@ -18,6 +19,9 @@ namespace Final_Project_WPF
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            LogIn lg = new LogIn();
+            lg.Show();
+            this.Close();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

@@ -11,25 +11,29 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Final_Project_WPF.DAL;
-using Final_Project_WPF.BL;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Final_Project_WPF
 {
     /// <summary>
-    /// Interaction logic for AdminLogIn.xaml
+    /// Interaction logic for LogIn.xaml
     /// </summary>
-    public partial class AdminLogIn : Window
+    public partial class LogIn : Window
     {
-        public AdminLogIn()
+        public LogIn()
         {
             InitializeComponent();
-            
         }
 
-        private void A_LogIn_Click(object sender, RoutedEventArgs e)
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Hello h = new Hello();
+            h.Show();
+            this.Close();
+        }
+
+        private void LogIn1_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
             connection.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf';Integrated Security=True";
@@ -45,25 +49,9 @@ namespace Final_Project_WPF
                 int count = Convert.ToInt32(sqlc.ExecuteScalar());
                 if (count == 1)
                 {
-                    string query2 = "SELECT isadmin FROM Clientstab WHERE FirstName=@Name AND password=@pass";
-                    SqlCommand sqlcd = new SqlCommand(query2, connection);
-                    sqlc.CommandType = CommandType.Text;
-                    sqlcd.Parameters.AddWithValue("@Name", name.Text);
-                    sqlcd.Parameters.AddWithValue("@Pass", password.Text);
-                    int isad = Convert.ToInt32(sqlcd.ExecuteScalar());
-                    if(isad == 1)
-                    {
-                        MainWindow m = new MainWindow();
-                        m.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("credentioals are incorrect!");
-                    }
-
-
-                    
+                    Dashboard m = new Dashboard();
+                    m.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -80,13 +68,6 @@ namespace Final_Project_WPF
             {
                 connection.Close();
             }
-        }
-
-        private void exit_Click(object sender, RoutedEventArgs e)
-        {
-            Hello h = new Hello();
-            h.Show();
-            this.Close();
         }
     }
 }
