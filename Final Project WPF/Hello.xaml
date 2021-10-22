@@ -75,7 +75,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Welcome!" HorizontalAlignment="Center" VerticalAlignment="Top" Height="89" Width="218" FontSize="48" Margin="0,53,0,0"/>
             <Button x:Name="Registor" Content="Register" HorizontalAlignment="Left" Margin="116,167,0,0" VerticalAlignment="Top" Height="63" Width="202" Background="#FF63CCF1" Style="{DynamicResource RoundedButton}" Click="Registor_Click"/>
-            <Button x:Name="Login" Content="Login" HorizontalAlignment="Left" Margin="116,262,0,0" VerticalAlignment="Top" Height="63" Width="202" Background="#FF63CCF1" Style="{DynamicResource RoundedButton}" Click="Login_Click"/>
+            <Button x:Name="Login" Content="Student Login" HorizontalAlignment="Left" Margin="116,262,0,0" VerticalAlignment="Top" Height="63" Width="202" Background="#FF63CCF1" Style="{DynamicResource RoundedButton}" Click="Login_Click"/>
             <Button x:Name="Client_Managment" Content="Client Managment" HorizontalAlignment="Left" Margin="116,357,0,0" VerticalAlignment="Top" Height="63" Width="202" Background="#FF63CCF1" Style="{DynamicResource RoundedButton}" Click="ClientManagment_click"/>
             <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="101,448,0,0" VerticalAlignment="Top" Height="68" Width="232" Background="#FFD4D4D4" Style="{DynamicResource RoundedButton}" Click="Exit_Click"/>
 

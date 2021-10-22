@@ -49,13 +49,26 @@ namespace Final_Project_WPF
                 int count = Convert.ToInt32(sqlc.ExecuteScalar());
                 if (count == 1)
                 {
-                    Dashboard m = new Dashboard();
-                    m.Show();
-                    this.Close();
+                    string query2 = "SELECT aproved FROM Clientstab WHERE FirstName=@Name AND password=@pass";
+                    SqlCommand sqlcd = new SqlCommand(query2, connection);
+                    sqlc.CommandType = CommandType.Text;
+                    sqlcd.Parameters.AddWithValue("@Name", name.Text);
+                    sqlcd.Parameters.AddWithValue("@Pass", password.Text);
+                    int isad = Convert.ToInt32(sqlcd.ExecuteScalar());
+                    if (isad == 1)
+                    {
+                        Dashboard m = new Dashboard();
+                        m.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You were not aproved by an admin, Please contact your system administrator", "Warning");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("credentioals are incorrect!");
+                    MessageBox.Show("credentioals are incorrect!","Warning");
                 }
 
 

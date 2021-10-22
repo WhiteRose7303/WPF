@@ -41,11 +41,11 @@ namespace Final_Project_WPF
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567","1","1234");
-                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","0", "0");
-                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","0", "0");
-                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","0", "0");
-                Client_Dal.Insert("rony", "old", "1234567", "0000000000", "0", "1234");
+                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567","1","1234","1");
+                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","0", "0","1");
+                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","0", "0","1");
+                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","0", "0","1");
+                Client_Dal.Insert("rony", "old", "1234567", "0000000000", "0", "1234","0");
             }
         }
 
@@ -64,6 +64,14 @@ namespace Final_Project_WPF
             else
             {
                 Client.Isadmin = "0";
+            }
+            if (aproved.IsChecked == true)
+            {
+                Client.Aproved = "1";
+            }
+            else
+            {
+                Client.Aproved = "0";
             }
             if (TB_ZipCode.Text != "")
                 Client.ZipCode = TB_ZipCode.Text;
@@ -189,6 +197,7 @@ namespace Final_Project_WPF
             TB_Phone.Clear();
             Password.Clear();
             Is_admin.IsChecked = false;
+            aproved.IsChecked = false;
             IDLabel.Content = "0";
             Delete.IsEnabled = false;
             insert = false;
@@ -213,7 +222,15 @@ namespace Final_Project_WPF
                 {
                     Is_admin.IsChecked = false;
                 }
-                
+                if (client.Aproved.ToString() == "1")
+                {
+                    aproved.IsChecked = true;
+                }
+                else
+                {
+                    aproved.IsChecked = false;
+                }
+
 
             }
             else

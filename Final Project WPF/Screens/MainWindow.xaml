@@ -362,6 +362,8 @@
             <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,361,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" Height="15"/>
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Password" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="92,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,306,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
+            <Label Content="Admin Aproved" HorizontalAlignment="Left" Margin="31,355,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Grid.ColumnSpan="2" Width="98"/>
+            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="41,362,0,0" VerticalAlignment="Top" Width="73" Height="15" Grid.Column="2"/>
 
         </Grid>
     </Border>

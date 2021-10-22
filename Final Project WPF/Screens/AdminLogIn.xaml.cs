@@ -59,7 +59,7 @@ namespace Final_Project_WPF
                     }
                     else
                     {
-                        MessageBox.Show("credentioals are incorrect!");
+                        MessageBox.Show("You are not an administrator. please log in through the student login screen.");
                     }
 
 
