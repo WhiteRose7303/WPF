@@ -11,6 +11,8 @@ namespace Final_Project_WPF.BL
         private string m_LastName;
         private string m_ZipCode;
         private string m_Phone;
+        private string m_isadmin;
+        private string m_pass;
         private int m_ID;
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
 
@@ -19,13 +21,12 @@ namespace Final_Project_WPF.BL
         public string ZipCode { get => m_ZipCode; set => m_ZipCode = value; }
         public string Phone { get => m_Phone; set => m_Phone = value; }
         public int ID { get => m_ID; set => m_ID = value; }
+        public string Isadmin { get => m_isadmin; set => m_isadmin = value; }
+        public string Pass { get => m_pass; set => m_pass = value; }
 
         public void Insert()
         {
-            Client_Dal.Insert(m_FirstName, m_LastName, m_ZipCode, m_Phone);
-         
-            
-
+            Client_Dal.Insert(m_FirstName, m_LastName, m_ZipCode, m_Phone, m_isadmin, m_pass);
         }
 
         public Client()
@@ -34,7 +35,7 @@ namespace Final_Project_WPF.BL
 
         public bool Update()
         {
-            return Client_Dal.Update(m_ID, m_FirstName, m_LastName, m_ZipCode, m_Phone);
+            return Client_Dal.Update(m_ID, m_FirstName, m_LastName, m_ZipCode, m_Phone, m_isadmin, m_pass);
         }
 
         public bool Delete()
@@ -51,10 +52,12 @@ namespace Final_Project_WPF.BL
             LastName = dataRow["LastName"].ToString();
             ZipCode = dataRow["ZipCode"].ToString();
             Phone = dataRow["Phone"].ToString();
+            Isadmin = dataRow["isadmin"].ToString();
+            Pass = dataRow["password"].ToString();
         }
 
         public override string ToString()
-        { return $"{LastName} {FirstName}"; }
+        { return $"{LastName} {FirstName} {Pass} {Isadmin}"; }
     }
 
 }

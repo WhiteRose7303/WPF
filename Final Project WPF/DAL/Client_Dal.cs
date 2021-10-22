@@ -4,24 +4,24 @@ namespace Final_Project_WPF.DAL
 {
     public class Client_Dal
     {
-        public static bool Insert(string firstName, string lastName, string zipCode, string phone)
+        public static bool Insert(string firstName, string lastName, string zipCode, string phone, string isadmin, string pass)
         {
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Clientstab"
             + "("
-            + "[FirstName],[LastName],[ZipCode], [phone]"
+            + "[FirstName],[LastName],[ZipCode], [phone],[isadmin], [password]"
             + ")"
             + " VALUES "
             + "("
-            + $"N'{firstName}',N'{lastName}','{zipCode}', '{phone}'"
+            + $"N'{firstName}',N'{lastName}','{zipCode}', '{phone}', N'{isadmin}', N'{pass}'"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
         }
 
-        public static bool Update(int id, string firstName, string lastName, string zipCode, string Phone)
+        public static bool Update(int id, string firstName, string lastName, string zipCode, string Phone, string isadmin, string pass)
         {
             //מעדכנת את הלקוח במסד הנתונים
 
@@ -30,6 +30,8 @@ namespace Final_Project_WPF.DAL
             + $",[LastName] = N'{lastName}'"
             + $",[Phone] = '{Phone}'"
             + $",[ZipCode] = '{zipCode}'"
+            + $",[isadmin] = '{isadmin}'"
+            + $",[password] = '{pass}'"
             + $" WHERE ID = {id}";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
@@ -61,7 +63,7 @@ namespace Final_Project_WPF.DAL
             Dal.FillDataSet(dataSet, "Clientstab", "[LastName],[FirstName]");
             //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
         }
-
+ 
         public static void reseed()
         {
             string str = $"DBCC CHECKIDENT (@\"clientstab\", RESEED, 0)";

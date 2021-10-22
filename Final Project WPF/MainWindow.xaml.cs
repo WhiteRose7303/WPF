@@ -22,25 +22,30 @@ namespace Final_Project_WPF
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            //debug
+            //DebugFill();
+
+            ClientArrToForm();
+        }
+
+        public void DebugFill()
+        {
             if ((MessageBox.Show("Debug purposes Fill DB?", "Fill DB", MessageBoxButton.YesNo,
                 MessageBoxImage.Warning) == MessageBoxResult.Yes))
             {
                 //clear table
-                for (int i = 0; i < 1000; i++) 
+                for (int i = 0; i < 1000; i++)
                 {
                     Client_Dal.Delete(i);
                 }
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567");
-                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567");
-                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567");
-                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567");
-                
-
+                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567","1","0");
+                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","1", "0");
+                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","1", "0");
+                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","1", "0");
             }
-            ClientArrToForm();
         }
 
         private Client FromToClient()
@@ -50,6 +55,15 @@ namespace Final_Project_WPF
             Client.LastName = TB_LastName.Text;
             Client.Phone = TB_Phone.Text;
             Client.ID = int.Parse((string)IDLabel.Content);
+            Client.Pass = Password.Text;
+            if (Is_admin.IsChecked == true)
+            {
+                Client.Isadmin = "1";
+            }
+            else
+            {
+                Client.Isadmin = "0";
+            }
             if (TB_ZipCode.Text != "")
                 Client.ZipCode = TB_ZipCode.Text;
             return Client;
@@ -102,6 +116,7 @@ namespace Final_Project_WPF
                 }
             }
             ClientArrToForm();
+            Delete.IsEnabled = false;
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
@@ -171,7 +186,10 @@ namespace Final_Project_WPF
             TB_LastName.Clear();
             TB_ZipCode.Clear();
             TB_Phone.Clear();
+            Password.Clear();
+            Is_admin.IsChecked = false;
             IDLabel.Content = "0";
+            Delete.IsEnabled = false;
             insert = false;
         }
 
@@ -185,6 +203,17 @@ namespace Final_Project_WPF
                 TB_LastName.Text = client.LastName;
                 TB_ZipCode.Text = client.ZipCode.ToString();
                 TB_Phone.Text = client.Phone;
+                Password.Text = client.Pass.ToString();
+                if (client.Isadmin.ToString() == "1")
+                {
+                    Is_admin.IsChecked = true;
+                }
+                else
+                {
+                    Is_admin.IsChecked = false;
+                }
+                
+
             }
             else
             {
@@ -219,6 +248,7 @@ namespace Final_Project_WPF
             }
             client.ID = 0;
             ClientArrToForm();
+            Delete.IsEnabled = false;
         }
 
         private void ListBox_Client_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -238,12 +268,20 @@ namespace Final_Project_WPF
             TB_Phone.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
-            ListBox_Client.DataContext = clientArr;
+            ListBox_Client.ItemsSource = clientArr;
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             clear();
+            ClientArrToForm();
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            Hello he = new Hello();
+            he.Show();
+            this.Close();
         }
     }
 }

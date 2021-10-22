@@ -34,9 +34,11 @@ namespace Final_Project_WPF.BL
             {
                 //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
 
-                client = (this[i] as Client);
+                client = this[i] as Client;
                 if ((client.FirstName.ToLower().StartsWith(lastName.ToLower()) && (client.Phone.ToString()).Contains(phone)))
+                {
                     clientArr.Add(client);
+                }
             }
             return clientArr;
         }

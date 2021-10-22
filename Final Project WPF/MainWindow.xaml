@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Client" Height="550" Width="800" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
+        Title="Client" WindowStartupLocation="CenterScreen" Height="550" Width="800" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -346,19 +346,22 @@
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_FirstName" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" Text="Dani" />
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_LastName" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" Text="Litani" />
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_ZipCode" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" Text="0000000" />
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_Phone" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" Text="0000000000" />
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_Phone" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="94,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" Text="0000000000" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="First Name" HorizontalAlignment="Left" Margin="22,89,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Last Name" HorizontalAlignment="Left" Margin="22,147,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Zip Code" HorizontalAlignment="Left" Margin="22,203,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Phone" HorizontalAlignment="Left" Margin="22,254,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
-            <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
-            <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,486,0,0" VerticalAlignment="Top"/>
+            <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,465,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,465,0,0" VerticalAlignment="Top"/>
 
             <Button x:Name="Clear"  Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Margin="106,24,0,0" VerticalAlignment="Top" Height="25" Width="65" Click="Clear_Click" AutomationProperties.AccessKey=""  AutomationProperties.Name="Save"  Background="White" />
 
             <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="2,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
+            <Button x:Name="Go_back" Content="Go back" HorizontalAlignment="Left" Margin="28,510,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="Go_Back_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" Grid.ColumnSpan="2" />
+            <Label Content="Is Admin" HorizontalAlignment="Left" Margin="22,354,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
+            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,361,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" Height="15"/>
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Password" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="92,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
+            <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,306,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
 
         </Grid>
     </Border>
