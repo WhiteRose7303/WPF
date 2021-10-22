@@ -356,7 +356,7 @@
 
             <Button x:Name="Clear"  Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Margin="106,24,0,0" VerticalAlignment="Top" Height="25" Width="65" Click="Clear_Click" AutomationProperties.AccessKey=""  AutomationProperties.Name="Save"  Background="White" />
 
-            <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="2,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
+            <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="4,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
             <Button x:Name="Go_back" Content="Go back" HorizontalAlignment="Left" Margin="28,510,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="Go_Back_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" Grid.ColumnSpan="2" />
             <Label Content="Is Admin" HorizontalAlignment="Left" Margin="22,354,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,361,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" Height="15"/>

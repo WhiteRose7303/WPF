@@ -41,10 +41,11 @@ namespace Final_Project_WPF
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567","1","0");
-                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","1", "0");
-                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","1", "0");
-                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","1", "0");
+                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567","1","1234");
+                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567","0", "0");
+                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567","0", "0");
+                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567","0", "0");
+                Client_Dal.Insert("rony", "old", "1234567", "0000000000", "0", "1234");
             }
         }
 
