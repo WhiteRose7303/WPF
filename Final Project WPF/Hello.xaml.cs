@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Final_Project_WPF
 {
@@ -10,16 +11,23 @@ namespace Final_Project_WPF
         public Hello()
         {
             InitializeComponent();
-            Registor.IsEnabled = false;
-            /*
-            MainWindow h = new MainWindow();
-            h.Show();
+            //Registor.IsEnabled = false;
+            //loadmange();
+            //loaddashboard();
+        }
+
+        private void loaddashboard()
+        {
+            Dashboard d = new Dashboard();
+            d.Show();
             this.Close();
-            */
         }
 
         private void Registor_Click(object sender, RoutedEventArgs e)
         {
+            Register r = new Register();
+            r.Show();
+            this.Close();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -40,6 +48,12 @@ namespace Final_Project_WPF
 
             AdminLogIn ad = new AdminLogIn();
             ad.Show();
+            this.Close();
+        }
+        private void loadmange()
+        {
+            MainWindow h = new MainWindow();
+            h.Show();
             this.Close();
         }
     }

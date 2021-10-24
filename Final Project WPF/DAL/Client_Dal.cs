@@ -4,24 +4,24 @@ namespace Final_Project_WPF.DAL
 {
     public class Client_Dal
     {
-        public static bool Insert(string firstName, string lastName, string zipCode, string phone, string isadmin, string pass,string apr,string email)
+        public static bool Insert(string firstName, string lastName, string IdentityNumber, string phone, string isadmin, string pass,string apr,string email)
         {
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Clientstab"
             + "("
-            + "[FirstName],[LastName],[ZipCode], [phone],[isadmin], [password], [aproved], [Email]"
+            + "[FirstName],[LastName],[IdentityNumber], [phone],[isadmin], [password], [aproved], [Email]"
             + ")"
             + " VALUES "
             + "("
-            + $"N'{firstName}',N'{lastName}','{zipCode}', '{phone}', N'{isadmin}', N'{pass}', N'{apr}',N'{email}'"
+            + $"N'{firstName}',N'{lastName}','{IdentityNumber}', '{phone}', N'{isadmin}', N'{pass}', N'{apr}',N'{email}'"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
         }
 
-        public static bool Update(int id, string firstName, string lastName, string zipCode, string Phone, string isadmin, string pass, string apr, string email)
+        public static bool Update(int id, string firstName, string lastName, string IdentityNumber, string Phone, string isadmin, string pass, string apr, string email)
         {
             //מעדכנת את הלקוח במסד הנתונים
 
@@ -29,7 +29,7 @@ namespace Final_Project_WPF.DAL
             + $" [FirstName] = N'{firstName}'"
             + $",[LastName] = N'{lastName}'"
             + $",[Phone] = '{Phone}'"
-            + $",[ZipCode] = '{zipCode}'"
+            + $",[IdentityNumber] = '{IdentityNumber}'"
             + $",[isadmin] = '{isadmin}'"
             + $",[password] = '{pass}'"
             + $",[aproved] = '{apr}'"

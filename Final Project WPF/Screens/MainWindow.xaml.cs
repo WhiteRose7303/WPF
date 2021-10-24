@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.Net.Mail;
 using System.Net;
 using System.Configuration;
 using System.IO;
@@ -29,7 +28,7 @@ namespace Final_Project_WPF
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //debug
-            //DebugFill();
+            DebugFill();
 
             ClientArrToForm();
         }
@@ -47,11 +46,11 @@ namespace Final_Project_WPF
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "1234567", "0501234567", "1", "1234", "1", "me@hadarov.com");
-                Client_Dal.Insert("Israel", "Israeli", "1234567", "0501234567", "0", "0", "1", "test");
-                Client_Dal.Insert("Israela", "Israeli", "1234567", "0501234567", "0", "0", "1", "test@gmail.com");
-                Client_Dal.Insert("Dani", "Avdia", "1234567", "0501234567", "0", "0", "1", "test");
-                Client_Dal.Insert("rony", "old", "1234567", "0500000000", "0", "1234", "0", "rony@test.com");
+                Client_Dal.Insert("Hadar", "Ovadia", "0", "0501234567", "1", "1234", "1", "me@hadarov.com");
+                Client_Dal.Insert("Israel", "Israeli", "1", "0501234567", "0", "0", "1", "test");
+                Client_Dal.Insert("Israela", "Israeli", "2", "0501234567", "0", "0", "1", "test@gmail.com");
+                Client_Dal.Insert("Dani", "Avdia", "3", "0501234567", "0", "0", "1", "test");
+                Client_Dal.Insert("rony", "old", "4", "0500000000", "0", "1234", "0", "rony@test.com");
             }
         }
 
@@ -80,8 +79,8 @@ namespace Final_Project_WPF
             {
                 Client.Aproved = "0";
             }
-            if (TB_ZipCode.Text != "")
-                Client.ZipCode = TB_ZipCode.Text;
+            if (StudentID_textbox.Text != "")
+                Client.IdentityNumber = StudentID_textbox.Text;
             return Client;
         }
 
@@ -104,11 +103,11 @@ namespace Final_Project_WPF
 
                     TB_FirstName.BorderBrush = Brushes.Green;
                     TB_LastName.BorderBrush = Brushes.Green;
-                    TB_ZipCode.BorderBrush = Brushes.Green;
+                    StudentID_textbox.BorderBrush = Brushes.Green;
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
-                    SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, TB_ZipCode.Text, TB_Phone.Text, Password.Text);
+                    SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
                 }
             }
             else
@@ -121,11 +120,11 @@ namespace Final_Project_WPF
 
                     TB_FirstName.BorderBrush = Brushes.Green;
                     TB_LastName.BorderBrush = Brushes.Green;
-                    TB_ZipCode.BorderBrush = Brushes.Green;
+                    StudentID_textbox.BorderBrush = Brushes.Green;
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
-                    updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, TB_ZipCode.Text, TB_Phone.Text, Password.Text);
+                    updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
                 }
                 else
                 {
@@ -165,15 +164,15 @@ namespace Final_Project_WPF
             {
                 TB_LastName.BorderBrush = Brushes.Silver;
             }
-            bool containschar = TB_ZipCode.Text.ToString().Any(char.IsDigit);
-            if (TB_ZipCode.Text.Length != 7 || !containschar)
+            bool containschar = StudentID_textbox.Text.ToString().Any(char.IsDigit);
+            if (StudentID_textbox.Text.Length > 9 || !containschar)
             {
                 flag = false;
-                TB_ZipCode.BorderBrush = Brushes.Red;
-                TB_ZipCode.Focus();
+                StudentID_textbox.BorderBrush = Brushes.Red;
+                StudentID_textbox.Focus();
             }
             else
-                TB_ZipCode.BorderBrush = Brushes.Silver;
+                StudentID_textbox.BorderBrush = Brushes.Silver;
             string phone = TB_Phone.Text.ToString();
 
             if (TB_Phone.Text.Length != 10 || phone[0] != '0' || phone[1] != '5')
@@ -201,7 +200,7 @@ namespace Final_Project_WPF
         {
             TB_FirstName.BorderBrush = Brushes.Silver;
             TB_LastName.BorderBrush = Brushes.Silver;
-            TB_ZipCode.BorderBrush = Brushes.Silver;
+            StudentID_textbox.BorderBrush = Brushes.Silver;
             TB_Phone.BorderBrush = Brushes.Silver;
             if (insert == true)
             {
@@ -215,7 +214,7 @@ namespace Final_Project_WPF
         {
             TB_FirstName.Clear();
             TB_LastName.Clear();
-            TB_ZipCode.Clear();
+            StudentID_textbox.Clear();
             TB_Phone.Clear();
             Password.Clear();
             Email.Clear();
@@ -235,7 +234,7 @@ namespace Final_Project_WPF
                 TB_FirstName.Text = client.FirstName;
                 TB_LastName.Text = client.LastName;
                 Email.Text = client.Email;
-                TB_ZipCode.Text = client.ZipCode.ToString();
+                StudentID_textbox.Text = client.IdentityNumber.ToString();
                 TB_Phone.Text = client.Phone;
                 Password.Text = client.Pass.ToString();
                 if (client.Isadmin.ToString() == "1")

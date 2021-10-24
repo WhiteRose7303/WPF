@@ -41,18 +41,18 @@ namespace Final_Project_WPF
             {
                 if (connection.State == ConnectionState.Closed)
                     connection.Open();
-                string query = "SELECT COUNT(1) FROM Clientstab WHERE FirstName=@Name AND password=@pass";
+                string query = "SELECT COUNT(1) FROM Clientstab WHERE identitynumber=@ID AND password=@pass";
                 SqlCommand sqlc = new SqlCommand(query, connection);
                 sqlc.CommandType = CommandType.Text;
-                sqlc.Parameters.AddWithValue("@Name", name.Text);
+                sqlc.Parameters.AddWithValue("@ID", ID.Text);
                 sqlc.Parameters.AddWithValue("@Pass", password.Text);
                 int count = Convert.ToInt32(sqlc.ExecuteScalar());
                 if (count == 1)
                 {
-                    string query2 = "SELECT aproved FROM Clientstab WHERE FirstName=@Name AND password=@pass";
+                    string query2 = "SELECT aproved FROM Clientstab WHERE identitynumber=@ID AND password=@pass";
                     SqlCommand sqlcd = new SqlCommand(query2, connection);
                     sqlc.CommandType = CommandType.Text;
-                    sqlcd.Parameters.AddWithValue("@Name", name.Text);
+                    sqlcd.Parameters.AddWithValue("@ID", ID.Text);
                     sqlcd.Parameters.AddWithValue("@Pass", password.Text);
                     int isad = Convert.ToInt32(sqlcd.ExecuteScalar());
                     if (isad == 1)
