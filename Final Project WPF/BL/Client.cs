@@ -1,5 +1,4 @@
 ﻿using Final_Project_WPF.DAL;
-using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -16,7 +15,7 @@ namespace Final_Project_WPF.BL
         private string m_aproved;
         private string m_Email;
         private int m_ID;
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
+        private SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
 
         public string FirstName { get => m_FirstName; set => m_FirstName = value; }
         public string LastName { get => m_LastName; set => m_LastName = value; }
@@ -30,16 +29,22 @@ namespace Final_Project_WPF.BL
 
         public void Insert()
         {
-            Client_Dal.Insert(m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass,m_aproved,m_Email);
+            Client_Dal.Insert(m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved, m_Email);
         }
 
         public Client()
         {
         }
 
+        public Client(int id, string aproved)
+        {
+            this.ID = id;
+            this.m_aproved = aproved;
+        }
+
         public bool Update()
         {
-            return Client_Dal.Update(m_ID, m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved,m_Email);
+            return Client_Dal.Update(m_ID, m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved, m_Email);
         }
 
         public bool Delete()
@@ -65,5 +70,4 @@ namespace Final_Project_WPF.BL
         public override string ToString()
         { return $"{LastName} {FirstName} {Pass} {Isadmin}"; }
     }
-
 }

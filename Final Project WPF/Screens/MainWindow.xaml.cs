@@ -1,15 +1,12 @@
 ﻿using Final_Project_WPF.BL;
 using Final_Project_WPF.DAL;
+using Final_Project_WPF.Util;
 using System;
 using System.Linq;
-using System.Net.Mail;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.Net;
-using System.Configuration;
-using System.IO;
 
 namespace Final_Project_WPF
 {
@@ -71,6 +68,7 @@ namespace Final_Project_WPF
             {
                 Client.Isadmin = "0";
             }
+
             if (aproved.IsChecked == true)
             {
                 Client.Aproved = "1";
@@ -79,6 +77,7 @@ namespace Final_Project_WPF
             {
                 Client.Aproved = "0";
             }
+
             if (StudentID_textbox.Text != "")
                 Client.IdentityNumber = StudentID_textbox.Text;
             return Client;
@@ -107,7 +106,7 @@ namespace Final_Project_WPF
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
-                    SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
+                    EmailSenders.SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
                 }
             }
             else
@@ -124,7 +123,7 @@ namespace Final_Project_WPF
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
-                    updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
+                    EmailSenders.updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
                 }
                 else
                 {
@@ -253,8 +252,6 @@ namespace Final_Project_WPF
                 {
                     aproved.IsChecked = false;
                 }
-
-
             }
             else
             {
@@ -276,6 +273,7 @@ namespace Final_Project_WPF
                 {
                     if (client.Delete())
                     {
+                        EmailSenders.informdelete(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
                         Delete.IsEnabled = false;
                     }
                     else
@@ -324,57 +322,5 @@ namespace Final_Project_WPF
             he.Show();
             this.Close();
         }
-
-        private void SendEmail(string email, string first, string last, string zipcode, string phone, string password)
-        {
-            
-            var smtpClient = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential("hadarovadiaschoolmanagment@gmail.com", "hadarwpf1234"),
-                EnableSsl = true,
-
-            };
-            var mailmessage = new MailMessage()
-            {
-                
-                From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
-                Subject = "Your Registration Has Been Successfull!",
-                Body = "<h1>Great you are now registerd</h1>",
-                IsBodyHtml = true,
-                
-            };
-            
-            mailmessage.To.Add(email);
-
-            smtpClient.Send(mailmessage);
-
-
-
-        }
-
-        private void updateemail(string em, string first, string last, string zipcode, string phone, string password)
-        {
-            {
-                var smtpClient = new SmtpClient("smtp.gmail.com")
-                {
-                    Port = 587,
-                    Credentials = new NetworkCredential("hadarovadiaschoolmanagment@gmail.com", "hadarwpf1234"),
-                    EnableSsl = true,
-
-                };
-                var mailmessage = new MailMessage()
-                {
-                    From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
-                    Subject = "Your Acount Has Been Updated!",
-                    Body = "<h1>Coming Soon</h1>",
-                    IsBodyHtml = true,
-                };
-                mailmessage.To.Add(em);
-
-                smtpClient.Send(mailmessage);
-            }
-        }
-       
     }
 }

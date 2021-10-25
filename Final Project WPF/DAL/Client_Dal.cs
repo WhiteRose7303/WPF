@@ -4,7 +4,7 @@ namespace Final_Project_WPF.DAL
 {
     public class Client_Dal
     {
-        public static bool Insert(string firstName, string lastName, string IdentityNumber, string phone, string isadmin, string pass,string apr,string email)
+        public static bool Insert(string firstName, string lastName, string IdentityNumber, string phone, string isadmin, string pass, string apr, string email)
         {
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
@@ -65,7 +65,7 @@ namespace Final_Project_WPF.DAL
             Dal.FillDataSet(dataSet, "Clientstab", "[LastName],[FirstName]");
             //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
         }
- 
+
         public static void reseed()
         {
             string str = $"DBCC CHECKIDENT (@\"clientstab\", RESEED, 0)";

@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Final_Project_WPF.Util;
 
 namespace Final_Project_WPF
 {
@@ -55,7 +56,7 @@ namespace Final_Project_WPF
                     Phone_TB.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
-                    SendEmail(Email_TB.Text, FirstName_TB.Text, LastName_TB.Text, ID_TB.Text, Phone_TB.Text, Pass_TB.Text);
+                    EmailSenders.SelfRegEmail(Email_TB.Text, FirstName_TB.Text, LastName_TB.Text, ID_TB.Text, Phone_TB.Text, Pass_TB.Text);
                 }
             }
         }
@@ -144,25 +145,6 @@ namespace Final_Project_WPF
             insert = false;
         }
 
-        private void SendEmail(string email, string first, string last, string zipcode, string phone, string password)
-        {
-            var smtpClient = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential("hadarovadiaschoolmanagment@gmail.com", "hadarwpf1234"),
-                EnableSsl = true,
-            };
-            var mailmessage = new MailMessage()
-            {
-                From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
-                Subject = "Your Registration Has Been Successfull!",
-                Body = "<h1>Great, you are now registerd! Your will need to be aproved by a system admin, please contact your system administrator to get your account aproved.</h1>",
-                IsBodyHtml = true,
-            };
-
-            mailmessage.To.Add(email);
-
-            smtpClient.Send(mailmessage);
-        }
+        
     }
 }
