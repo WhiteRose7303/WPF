@@ -6,6 +6,53 @@
         mc:Ignorable="d"
         Title="Client" WindowStartupLocation="CenterScreen" Height="550" Width="800" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
     <Window.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid >
+                                <Border Width="45" Height="20" Background="LightGray" CornerRadius="10" Margin="5,0"></Border>
+                                <Border x:Name="button" Height="25" Width="25" CornerRadius="12.5" HorizontalAlignment="Left"  ></Border>
+                            </Grid>
+                            <ContentPresenter x:Name="content" Margin="10,0,0,0" Content="{TemplateBinding Content}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="right">
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="button" Duration="0:0:0.4" From="0,0,0,0" To="28,0,0,0" >
+                                    <ThicknessAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut"/>
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                            <Storyboard x:Key="left">
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" Storyboard.TargetName="button" Duration="0:0:0.4" From="28,0,0,0" To="0,0,0,0" >
+                                    <ThicknessAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut"/>
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="leftt"></RemoveStoryboard>
+                                    <BeginStoryboard Storyboard="{StaticResource right}" x:Name="rightt" ></BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <Setter TargetName="button" Property="Background" Value="#757575"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="rightt"></RemoveStoryboard>
+                                    <BeginStoryboard Storyboard="{StaticResource left}" x:Name="leftt" ></BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <Setter TargetName="button" Property="Background" Value="#FF63CCF1"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -359,11 +406,11 @@
             <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="4,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
             <Button x:Name="Go_back" Content="Go back" HorizontalAlignment="Left" Margin="28,510,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="Go_Back_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" Grid.ColumnSpan="2" />
             <Label Content="Is Admin" Margin="22,403,50,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,410,0,0" VerticalAlignment="Top" Width="73" Grid.ColumnSpan="2" Height="15"/>
+            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,402,0,0" VerticalAlignment="Top" Width="60" Grid.ColumnSpan="2" Height="31"/>
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Password" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="126,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,306,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Admin Aproved" HorizontalAlignment="Left" Margin="31,404,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Grid.ColumnSpan="2" Width="98"/>
-            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="41,411,0,0" VerticalAlignment="Top" Width="43" Height="15" Grid.Column="2"/>
+            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="41,403,0,0" VerticalAlignment="Top" Width="59" Height="32" Grid.Column="2"/>
             <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Email" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="125,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="Email&#xA;" HorizontalAlignment="Left" Margin="19,357,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
 
