@@ -33,4 +33,8 @@
     <Page Include="App.xaml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="%28IMGS%29\" />
+  </ItemGroup>
+
 </Project>

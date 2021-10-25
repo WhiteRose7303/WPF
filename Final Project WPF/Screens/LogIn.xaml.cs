@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Threading;
 
 namespace Final_Project_WPF
 {
@@ -21,8 +22,11 @@ namespace Final_Project_WPF
     /// </summary>
     public partial class LogIn : Window
     {
+        private DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         public LogIn()
         {
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             InitializeComponent();
         }
 
@@ -68,7 +72,9 @@ namespace Final_Project_WPF
                 }
                 else
                 {
-                    MessageBox.Show("credentioals are incorrect!","Warning");
+                    ID.BorderBrush = Brushes.Red;
+                    password.BorderBrush = Brushes.Red;
+                    dispatcherTimer.Start();
                 }
 
 
@@ -81,6 +87,12 @@ namespace Final_Project_WPF
             {
                 connection.Close();
             }
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            ID.BorderBrush = Brushes.Silver;
+            password.BorderBrush = Brushes.Silver;
+            dispatcherTimer.Stop();
         }
     }
 }

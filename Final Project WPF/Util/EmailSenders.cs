@@ -89,5 +89,26 @@ namespace Final_Project_WPF.Util
 
             smtpClient.Send(mailmessage);
         }
+
+        public static void adminupdate(string email, string first, string last, string zipcode, string phone, string password)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("hadarovadiaschoolmanagment@gmail.com", "hadarwpf1234"),
+                EnableSsl = true,
+            };
+            var mailmessage = new MailMessage()
+            {
+                From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
+                Subject = "Your Account Has Been Updated",
+                Body = "<h1>An admin has aproved your account!</h1>",
+                IsBodyHtml = true,
+            };
+
+            mailmessage.To.Add(email);
+
+            smtpClient.Send(mailmessage);
+        }
     }
 }

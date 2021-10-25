@@ -92,7 +92,7 @@ namespace Final_Project_WPF
                 if (!CheckForm())
                 {
                     //כאן מופיעה הודעת השגיאה
-                    MessageBox.Show("Error");
+                    
                 }
                 else
                 {
@@ -115,15 +115,30 @@ namespace Final_Project_WPF
 
                 if (client.Update() && CheckForm())
                 {
-                    ClientArrToForm();
+                    if (aprovecheck)
+                    {
+                        ClientArrToForm();
 
-                    TB_FirstName.BorderBrush = Brushes.Green;
-                    TB_LastName.BorderBrush = Brushes.Green;
-                    StudentID_textbox.BorderBrush = Brushes.Green;
-                    TB_Phone.BorderBrush = Brushes.Green;
-                    dispatcherTimer.Start();
-                    insert = true;
-                    EmailSenders.updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
+                        TB_FirstName.BorderBrush = Brushes.Green;
+                        TB_LastName.BorderBrush = Brushes.Green;
+                        StudentID_textbox.BorderBrush = Brushes.Green;
+                        TB_Phone.BorderBrush = Brushes.Green;
+                        dispatcherTimer.Start();
+                        insert = true;
+                        EmailSenders.updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
+                    }
+                    else
+                    {
+                        ClientArrToForm();
+
+                        TB_FirstName.BorderBrush = Brushes.Green;
+                        TB_LastName.BorderBrush = Brushes.Green;
+                        StudentID_textbox.BorderBrush = Brushes.Green;
+                        TB_Phone.BorderBrush = Brushes.Green;
+                        dispatcherTimer.Start();
+                        insert = true;
+                        EmailSenders.updateemail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
+                    }
                 }
                 else
                 {
@@ -321,6 +336,20 @@ namespace Final_Project_WPF
             Hello he = new Hello();
             he.Show();
             this.Close();
+        }
+        bool aprovecheck = false;
+        private void aproved_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)aproved.IsChecked)
+                aprovecheck = true;
+            else
+                aprovecheck = false;
+           
+        }
+
+        public static void GetCurrentUser()
+        {
+            //need to find the open client
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Final_Project_WPF
                 if (!CheckForm())
                 {
                     //כאן מופיעה הודעת השגיאה
-                    MessageBox.Show("Error");
+                    
                 }
                 else
                 {
@@ -57,8 +57,13 @@ namespace Final_Project_WPF
                     dispatcherTimer.Start();
                     insert = true;
                     EmailSenders.SelfRegEmail(Email_TB.Text, FirstName_TB.Text, LastName_TB.Text, ID_TB.Text, Phone_TB.Text, Pass_TB.Text);
+                    MessageBox.Show("Registration Successful!");
+                    Hello h = new Hello();
+                    h.Show();
+                    this.Close();
                 }
             }
+            
         }
 
         private bool CheckForm()

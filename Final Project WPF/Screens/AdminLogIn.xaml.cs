@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Final_Project_WPF.DAL;
-using Final_Project_WPF.BL;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Final_Project_WPF
 {
@@ -23,10 +12,13 @@ namespace Final_Project_WPF
     /// </summary>
     public partial class AdminLogIn : Window
     {
+        private DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+
         public AdminLogIn()
         {
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             InitializeComponent();
-            
         }
 
         private void A_LogIn_Click(object sender, RoutedEventArgs e)
@@ -51,26 +43,24 @@ namespace Final_Project_WPF
                     sqlcd.Parameters.AddWithValue("@ID", ID.Text);
                     sqlcd.Parameters.AddWithValue("@Pass", password.Text);
                     int isad = Convert.ToInt32(sqlcd.ExecuteScalar());
-                    if(isad == 1)
+                    if (isad == 1)
                     {
                         MainWindow m = new MainWindow();
                         m.Show();
                         this.Close();
+                        //add call to the client finder finalprojectwpf.getcurrentuser();
                     }
                     else
                     {
                         MessageBox.Show("You are not an administrator. please log in through the student login screen.");
                     }
-
-
-                    
                 }
                 else
                 {
-                    MessageBox.Show("credentioals are incorrect!");
+                    ID.BorderBrush = Brushes.Red;
+                    password.BorderBrush = Brushes.Red;
+                    dispatcherTimer.Start();
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -87,6 +77,13 @@ namespace Final_Project_WPF
             Hello h = new Hello();
             h.Show();
             this.Close();
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            ID.BorderBrush = Brushes.Silver;
+            password.BorderBrush = Brushes.Silver;
+            dispatcherTimer.Stop();
         }
     }
 }
