@@ -106,7 +106,21 @@ namespace Final_Project_WPF
                     TB_Phone.BorderBrush = Brushes.Green;
                     dispatcherTimer.Start();
                     insert = true;
-                    EmailSenders.SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
+                    string admin;
+                    string adminapr;
+                    if ((bool)Is_admin.IsChecked)
+                    {
+                        admin = "Yes";
+                    }
+                    else
+                        admin = "No";
+                    if ((bool)aproved.IsChecked)
+                    {
+                        adminapr = "Yes";
+                    }
+                    else
+                        adminapr = "No";
+                    EmailSenders.SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text, );
                 }
             }
             else

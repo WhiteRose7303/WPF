@@ -5,8 +5,9 @@ namespace Final_Project_WPF.Util
 {
     internal class EmailSenders
     {
-        public static void SendEmail(string email, string first, string last, string zipcode, string phone, string password)
+        public static void SendEmail(string email, string first, string last, string ID, string phone, string password)
         {
+            string st = $"<b>{email}</b>";
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
@@ -17,7 +18,14 @@ namespace Final_Project_WPF.Util
             {
                 From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
                 Subject = "Your Registration Has Been Successfull!",
-                Body = "<h1>Great you are now registerd</h1>",
+                Body = "<h1>Great you are now registerd</h1>"+
+                $"<h2>Your Registration Detalis Are:</h2>" +
+                $"<b> First Name: {first}</b><br></br>" +
+                $"<b> Last Name: {last}</b><br></br>" +
+                $"<b> ID Number: {ID}</b><br></br>" +
+                $"<b> Phone: {phone}</b><br></br>" +
+                $"<b> Email: {email}</b><br></br>" +
+                $"<b> Password: {password}</b><br></br>",
                 IsBodyHtml = true,
             };
 
@@ -48,7 +56,7 @@ namespace Final_Project_WPF.Util
             }
         }
 
-        public static void SelfRegEmail(string email, string first, string last, string zipcode, string phone, string password)
+        public static void SelfRegEmail(string email, string first, string last, string ID, string phone, string password)
         {
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
@@ -60,7 +68,15 @@ namespace Final_Project_WPF.Util
             {
                 From = new MailAddress("hadarovadiaschoolmanagment@gmail.com"),
                 Subject = "Your Registration Has Been Successfull!",
-                Body = "<h1>Great, you are now registerd! Your will need to be aproved by a system admin, please contact your system administrator to get your account aproved.</h1>",
+                Body = "<h1>Great, you are now registerd! Your will need to be aproved by a system admin, please contact your system administrator to get your account aproved.</h1>" +
+                $"<h2>Your Registration Detalis Are:</h2>" +
+                $"<b> First Name: {first}</b><br></br>"+
+                $"<b> Last Name: {last}</b><br></br>" +
+                $"<b> ID Number: {ID}</b><br></br>" +
+                $"<b> Phone: {phone}</b><br></br>" +
+                $"<b> Email: {email}</b><br></br>" +
+                $"<b> Password: {password}</b><br></br>",
+
                 IsBodyHtml = true,
             };
 
