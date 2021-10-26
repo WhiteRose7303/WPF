@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Client" WindowStartupLocation="CenterScreen" Height="550" Width="800" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
+        Title="Client" WindowStartupLocation="CenterScreen" Height="650" Width="800" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="CheckBox">
             <Setter Property="Template">
@@ -366,52 +366,104 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="FocusVisual5">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background5" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border5" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background3" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border5" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background3" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border3" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background5" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border5" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground5" Color="#FF838383"/>
+        <Style x:Key="Clear" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual5}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background5}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border5}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border5}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background3}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border3}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background5}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border5}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground5}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Border Background="White" BorderThickness="1" CornerRadius="12">
         <Grid x:Name="___Client" Margin="0,0,0,-6">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="128*" />
-                <ColumnDefinition Width="93*" />
-                <ColumnDefinition Width="245*" />
-                <ColumnDefinition Width="252*"/>
-                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="359*" />
+                <ColumnDefinition Width="40*" />
             </Grid.ColumnDefinitions>
 
-            <Label x:Name="Client_Registor" Content="Client Register" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="181" FontSize="24" Grid.ColumnSpan="2" />
+            <Label x:Name="Client_Registor" Content="Client Register" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="181" FontSize="24" />
 
 
-            <ListBox x:Name="ListBox_Client" Grid.Column="2" Margin="231,64,47,111" Grid.ColumnSpan="3" MouseDoubleClick="ListBox_Client_MouseDoubleClick"/>
+            <ListBox x:Name="ListBox_Client" Margin="452,64,47,94" Grid.ColumnSpan="2" MouseDoubleClick="ListBox_Client_MouseDoubleClick"/>
 
 
-            <Label Content="Clients" Grid.Column="2" HorizontalAlignment="Left" Margin="234,20,0,0" VerticalAlignment="Top" Width="83" FontSize="20" Background="White" Grid.ColumnSpan="2" />
+            <Label Content="Clients" HorizontalAlignment="Left" Margin="455,20,0,0" VerticalAlignment="Top" Width="83" FontSize="20" Background="White" />
 
-            <Button Style="{DynamicResource RoundedButton}" x:Name="save" Grid.Column="3" HorizontalAlignment="Left" Margin="202,471,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Save_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Grid.ColumnSpan="2" Background="#FF63CCF1" >
+            <Button Style="{DynamicResource RoundedButton}" x:Name="save" HorizontalAlignment="Left" Margin="668,591,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Save_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Grid.ColumnSpan="2" Background="#FF63CCF1" >
                 <Label Content="Save"/>
             </Button>
 
-            <Button x:Name="Cancel" Content="Exit" Grid.Column="2" HorizontalAlignment="Left" Margin="219,471,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Cancel_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FF63CCF1" Grid.ColumnSpan="2" />
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_FirstName" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" Grid.Column="1" />
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_LastName" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" Grid.Column="1" />
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="StudentID_textbox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" Grid.Column="1" />
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_Phone" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" Grid.Column="1" />
+            <Button x:Name="Cancel" Content="Exit" HorizontalAlignment="Left" Margin="440,591,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Cancel_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FF63CCF1" />
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_FirstName" HorizontalAlignment="Left" Margin="128,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_LastName" HorizontalAlignment="Left" Margin="128,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" />
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="StudentID_textbox" HorizontalAlignment="Left" Margin="128,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" />
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TB_Phone" HorizontalAlignment="Left" Margin="128,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="First Name" HorizontalAlignment="Left" Margin="22,89,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Last Name" HorizontalAlignment="Left" Margin="22,147,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Identity Number" HorizontalAlignment="Left" Margin="22,202,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label Content="Phone" HorizontalAlignment="Left" Margin="22,254,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,465,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,465,0,0" VerticalAlignment="Top"/>
+            <Label Content="Client ID" HorizontalAlignment="Left" Margin="28,562,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,562,0,0" VerticalAlignment="Top"/>
 
-            <Button x:Name="Clear"  Content="Clear" Grid.Column="2" HorizontalAlignment="Left" Margin="106,24,0,0" VerticalAlignment="Top" Height="25" Width="65" Click="Clear_Click" AutomationProperties.AccessKey=""  AutomationProperties.Name="Save"  Background="White" />
+            <Button Style="{DynamicResource Clear}" x:Name="Clear"  Content="Clear" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top" Height="25" Width="65" Click="Clear_Click" AutomationProperties.AccessKey=""  AutomationProperties.Name="Save"  Background="White" />
 
-            <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" Grid.Column="3" HorizontalAlignment="Left" Margin="4,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
-            <Button x:Name="Go_back" Content="Go back" HorizontalAlignment="Left" Margin="28,510,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="Go_Back_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" Grid.ColumnSpan="2" />
-            <Label Content="Is Admin" Margin="22,403,50,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,402,0,0" VerticalAlignment="Top" Width="60" Grid.ColumnSpan="2" Height="31"/>
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Password" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="126,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
-            <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,306,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
-            <Label Content="Admin Aproved" HorizontalAlignment="Left" Margin="31,404,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Column="1" Grid.ColumnSpan="2" Width="98"/>
-            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="41,403,0,0" VerticalAlignment="Top" Width="59" Height="32" Grid.Column="2" Click="aproved_Click"/>
-            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Email" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="125,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
+            <Button Style="{DynamicResource LessRoundButto3}" x:Name="Delete" Content="Delete" HorizontalAlignment="Left" Margin="470,565,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="23" Width="264" Background="#FFFF5959" Click="Delete_Click" Visibility="Visible" IsEnabled="False"/>
+            <Button x:Name="Go_back" Content="Go back" HorizontalAlignment="Left" Margin="28,607,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="Go_Back_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" />
+            <Label Content="Is Admin" Margin="22,403,640,0" VerticalAlignment="Top" BorderBrush="Black"/>
+            <CheckBox x:Name="Is_admin" Content="Admin" HorizontalAlignment="Left" Margin="94,402,0,0" VerticalAlignment="Top" Width="60" Height="31"/>
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Password" HorizontalAlignment="Left" Margin="126,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
+            <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" BorderBrush="Black"/>
+            <Label Content="Admin Aproved" HorizontalAlignment="Left" Margin="159,404,0,0" VerticalAlignment="Top" BorderBrush="Black" Width="98"/>
+            <CheckBox x:Name="aproved" Content="Yes" HorizontalAlignment="Left" Margin="262,403,0,0" VerticalAlignment="Top" Width="59" Height="32" Click="aproved_Click"/>
+            <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Email" HorizontalAlignment="Left" Margin="125,356,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" Height="37" FontSize="18" KeyUp="TB_FirstName_KeyUp" />
             <Label Content="Email&#xA;" HorizontalAlignment="Left" Margin="19,357,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
 
         </Grid>
