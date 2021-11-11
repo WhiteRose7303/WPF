@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Final_Project_WPF.Screens;
 
 namespace Final_Project_WPF
 {
@@ -43,11 +44,11 @@ namespace Final_Project_WPF
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "0", "0501234567", "1", "1234", "1", "me@hadarov.com");
-                Client_Dal.Insert("Israel", "Israeli", "1", "0501234567", "0", "0", "1", "test");
-                Client_Dal.Insert("Israela", "Israeli", "2", "0501234567", "0", "0", "1", "test@gmail.com");
-                Client_Dal.Insert("Dani", "Avdia", "3", "0501234567", "0", "0", "1", "test");
-                Client_Dal.Insert("rony", "old", "4", "0500000000", "0", "1234", "0", "rony@test.com");
+                Client_Dal.Insert("Hadar", "Ovadia", "0", "0501234567", "1", "1234", "1", "me@hadarov.com","1");
+                Client_Dal.Insert("Israel", "Israeli", "1", "0501234567", "0", "0", "1", "test", "1");
+                Client_Dal.Insert("Israela", "Israeli", "2", "0501234567", "0", "0", "1", "test@gmail.com", "1");
+                Client_Dal.Insert("Dani", "Avdia", "3", "0501234567", "0", "0", "1", "test", "1");
+                Client_Dal.Insert("rony", "old", "4", "0500000000", "0", "1234", "0", "rony@test.com", "1");
             }
         }
 
@@ -108,6 +109,7 @@ namespace Final_Project_WPF
                     insert = true;
                     string admin;
                     string adminapr;
+                    string teacher;
                     if ((bool)Is_admin.IsChecked)
                     {
                         admin = "Yes";
@@ -120,7 +122,13 @@ namespace Final_Project_WPF
                     }
                     else
                         adminapr = "No";
-                    EmailSenders.SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text, );
+                    if ((bool)IsTeacher.IsChecked)
+                    {
+                        teacher = "Yes";
+                    }
+                    else
+                        teacher = "No";
+                    EmailSenders.SendEmail(Email.Text, TB_FirstName.Text, TB_LastName.Text, StudentID_textbox.Text, TB_Phone.Text, Password.Text);
                 }
             }
             else
@@ -281,6 +289,14 @@ namespace Final_Project_WPF
                 {
                     aproved.IsChecked = false;
                 }
+                if (client.Teacher.ToString() == "1")
+                {
+                    IsTeacher.IsChecked = true;
+                }
+                else
+                {
+                    IsTeacher.IsChecked = false;
+                }
             }
             else
             {
@@ -364,6 +380,14 @@ namespace Final_Project_WPF
         public static void GetCurrentUser()
         {
             //need to find the open client
+        } 
+
+        private void GradeManeg_Click(object sender, RoutedEventArgs e)
+        {
+            GradeBuild g = new GradeBuild();
+            g.Show();
+            g.ClientArrToForm();
+            this.Close();
         }
     }
 }

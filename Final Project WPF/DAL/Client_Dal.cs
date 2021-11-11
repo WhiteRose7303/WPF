@@ -4,24 +4,24 @@ namespace Final_Project_WPF.DAL
 {
     public class Client_Dal
     {
-        public static bool Insert(string firstName, string lastName, string IdentityNumber, string phone, string isadmin, string pass, string apr, string email)
+        public static bool Insert(string firstName, string lastName, string IdentityNumber, string phone, string isadmin, string pass, string apr, string email, string teacher)
         {
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Clientstab"
             + "("
-            + "[FirstName],[LastName],[IdentityNumber], [phone],[isadmin], [password], [aproved], [Email]"
+            + "[FirstName],[LastName],[IdentityNumber], [phone],[isadmin], [password], [aproved], [Email], [Teacher]"
             + ")"
             + " VALUES "
             + "("
-            + $"N'{firstName}',N'{lastName}','{IdentityNumber}', '{phone}', N'{isadmin}', N'{pass}', N'{apr}',N'{email}'"
+            + $"N'{firstName}',N'{lastName}','{IdentityNumber}', '{phone}', N'{isadmin}', N'{pass}', N'{apr}',N'{email}',N'{teacher}'"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
         }
 
-        public static bool Update(int id, string firstName, string lastName, string IdentityNumber, string Phone, string isadmin, string pass, string apr, string email)
+        public static bool Update(int id, string firstName, string lastName, string IdentityNumber, string Phone, string isadmin, string pass, string apr, string email,string teacher)
         {
             //מעדכנת את הלקוח במסד הנתונים
 
@@ -34,6 +34,7 @@ namespace Final_Project_WPF.DAL
             + $",[password] = '{pass}'"
             + $",[aproved] = '{apr}'"
             + $",[email] = '{email}'"
+            + $",[Teacher] = '{teacher}'"
             + $" WHERE ID = {id}";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
