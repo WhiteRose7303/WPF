@@ -8,7 +8,7 @@ using Final_Project_WPF.DAL;
 using System.Collections;
 
 
-namespace Final_Project_WPF.BL.Grade
+namespace Final_Project_WPF.BL
 {
     class GradeArr : ArrayList
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Final_Project_WPF.DAL;
 using System.Data;
 
-namespace Final_Project_WPF.BL.Grade
+namespace Final_Project_WPF.BL
 {
     class Grade
     {

@@ -1,6 +1,7 @@
 ﻿using Final_Project_WPF.DAL;
 using System.Data;
 using System.Data.SqlClient;
+using Final_Project_WPF.BL;
 
 namespace Final_Project_WPF.BL
 {
@@ -15,6 +16,7 @@ namespace Final_Project_WPF.BL
         private string m_aproved;
         private string m_Email;
         private string m_Teacher;
+        private Grade m_Group;
         private int m_ID;
         private SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
 
@@ -28,10 +30,11 @@ namespace Final_Project_WPF.BL
         public string Aproved { get => m_aproved; set => m_aproved = value; }
         public string Email { get => m_Email; set => m_Email = value; }
         public string Teacher { get => m_Teacher; set => m_Teacher = value; }
+        internal Grade Group { get => m_Group; set => m_Group = value; }
 
         public void Insert()
         {
-            Client_Dal.Insert(m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved, m_Email,m_Teacher);
+            Client_Dal.Insert(m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved, m_Email,m_Teacher, m_Group.ID);
         }
 
         public Client()
@@ -46,7 +49,7 @@ namespace Final_Project_WPF.BL
 
         public bool Update()
         {
-            return Client_Dal.Update(m_ID, m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved, m_Email,m_Teacher);
+            return Client_Dal.Update(m_ID, m_FirstName, m_LastName, m_IdentityNumber, m_Phone, m_isadmin, m_pass, m_aproved, m_Email,m_Teacher,m_Group.ID);
         }
 
         public bool Delete()
@@ -69,6 +72,8 @@ namespace Final_Project_WPF.BL
             Aproved = dataRow["aproved"].ToString();
             Email = dataRow["Email"].ToString();
             Teacher = dataRow["Teacher"].ToString();
+            m_Group = new Grade(dataRow.GetParentRow("clientgroup"));
+
         }
 
         public override string ToString()
