@@ -10,6 +10,7 @@ namespace Final_Project_WPF
     {
         public Hello()
         {
+            //test
             InitializeComponent();
             //Registor.IsEnabled = false;
             //loadmange();
