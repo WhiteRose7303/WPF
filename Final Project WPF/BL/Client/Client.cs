@@ -41,10 +41,11 @@ namespace Final_Project_WPF.BL
         {
         }
 
-        public Client(int id, string aproved)
+        public Client(int id, string aproved, DataRow datarow)
         {
             this.ID = id;
             this.m_aproved = aproved;
+            m_Group = new Grade(datarow.GetParentRow("clientgroup"));
         }
 
         public bool Update()

@@ -18,15 +18,17 @@ namespace Final_Project_WPF
     {
         private DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         private bool insert = false;
+        
 
         public MainWindow()
         {
             InitializeComponent();
-
+            GroupArrToForm();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //debug
             DebugFill();
+            GroupArrToForm();
 
             ClientArrToForm();
         }
@@ -61,6 +63,7 @@ namespace Final_Project_WPF
             Client.Email = Email.Text;
             Client.ID = int.Parse((string)IDLabel.Content);
             Client.Pass = Password.Text;
+            Client.Group = GroupBox.SelectedItem as Grade;
             if (Is_admin.IsChecked == true)
             {
                 Client.Isadmin = "1";
@@ -259,6 +262,7 @@ namespace Final_Project_WPF
             IDLabel.Content = "0";
             Delete.IsEnabled = false;
             insert = false;
+            GroupBox.SelectedItem = null;
         }
 
         private void ClientToForm(Client client)
@@ -273,6 +277,7 @@ namespace Final_Project_WPF
                 StudentID_textbox.Text = client.IdentityNumber.ToString();
                 TB_Phone.Text = client.Phone;
                 Password.Text = client.Pass.ToString();
+                GroupBox.SelectedValue = client.Group.ID;
                 if (client.Isadmin.ToString() == "1")
                 {
                     Is_admin.IsChecked = true;
@@ -388,6 +393,18 @@ namespace Final_Project_WPF
             g.Show();
             g.ClientArrToForm();
             this.Close();
+        }
+        public void GroupArrToForm()
+        {
+
+            //ממירה את הטנ "מ אוסף ישובים לטופס
+
+            GradeArr gradear = new GradeArr();
+            gradear.Fill();
+
+            GroupBox.DataContext = gradear;
+            GroupBox.SelectedValuePath = "id";
+            GroupBox.DisplayMemberPath = "grade";
         }
     }
 }
