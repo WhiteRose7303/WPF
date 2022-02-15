@@ -1,6 +1,7 @@
 ﻿using Final_Project_WPF.BL;
 
 using System.Windows;
+using System.Windows.Input;
 
 namespace Final_Project_WPF.Screens
 {
@@ -12,7 +13,7 @@ namespace Final_Project_WPF.Screens
         public GradeBuild()
         {
             InitializeComponent();
-            ClientArrToForm();
+            GradeArrToForm();
         }
 
 
@@ -22,17 +23,17 @@ namespace Final_Project_WPF.Screens
             m.Show();
             this.Close();
         }
-        private Grade FromToClient()
+        private Grade FormToGrade()
         {
             Grade g = new Grade();
             g.Name = TB_Name.Text;
-            g.ID = int.Parse((string)IDLabel.Content);
+            g.ID = int.Parse(IDLabel.Content.ToString());
             return g;
         }
 
         private void Save_Button_Click(object sender, RoutedEventArgs e)
         {
-            Grade g = FromToClient();
+            Grade g = FormToGrade();
 
             if (g.ID == 0)
             {
@@ -46,23 +47,63 @@ namespace Final_Project_WPF.Screens
 
                 if (g.Update())
                 {
-                    ClientArrToForm();
+                    GradeArrToForm();
                 }
                 else
                 {
                     MessageBox.Show("Error updating");
                 }
             }
-            ClientArrToForm();
+            GradeArrToForm();
         }
 
-        public void ClientArrToForm()
+        public void GradeArrToForm()
         {
             //ממירה את הטנ "מ אוסף לקוחות לטופס
 
-            GradeArr clientArr = new GradeArr();
-            clientArr.Fill();
-            listbox_Grade.ItemsSource = clientArr;
+            GradeArr grade = new GradeArr();
+            grade.Fill();
+            listbox_Grade.ItemsSource = grade;
+        }
+
+        private void ListBox_Client_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GradeToForm(listbox_Grade.SelectedItem as Grade);
+        }
+        private void GradeToForm(Grade grd)
+        {
+            if (grd != null)
+            {
+                TB_Name.Text = grd.Name;
+                IDLabel.Content = grd.ID;
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Grade g = FormToGrade();
+            if (g.ID == 0)
+            {
+                MessageBox.Show("You need to choose a client");
+            }
+            else
+            {
+                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
+
+                if ((MessageBox.Show("Are you sure?", "warning", MessageBoxButton.YesNo,
+                MessageBoxImage.Warning) == MessageBoxResult.Yes))
+                {
+                    g.Delete();
+                    TB_Name.Text = "";
+                    GradeArrToForm();
+                }
+                else
+                { }
+
+
+
+
+            }
         }
     }
 

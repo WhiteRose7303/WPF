@@ -30,15 +30,6 @@ namespace Final_Project_WPF.BL
                 this.Add(curClient);
             }
         }
-        public bool IsContains(string cityName)
-        {
-
-            //בדיקה האם יש ישוב עם אותו שם
-
-            for (int i = 0; i < this.Count; i++)
-                if ((this[i] as Grade).Name == cityName)
-                    return true;
-            return false;
-        }
+       
     }
 }

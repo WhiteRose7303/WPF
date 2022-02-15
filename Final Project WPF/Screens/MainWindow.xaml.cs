@@ -28,7 +28,6 @@ namespace Final_Project_WPF
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //debug
             DebugFill();
-            GroupArrToForm();
 
             ClientArrToForm();
         }
@@ -391,7 +390,7 @@ namespace Final_Project_WPF
         {
             GradeBuild g = new GradeBuild();
             g.Show();
-            g.ClientArrToForm();
+            g.GradeArrToForm();
             this.Close();
         }
         public void GroupArrToForm()
@@ -402,9 +401,9 @@ namespace Final_Project_WPF
             GradeArr gradear = new GradeArr();
             gradear.Fill();
 
-            GroupBox.DataContext = gradear;
-            GroupBox.SelectedValuePath = "id";
-            GroupBox.DisplayMemberPath = "grade";
+            GroupBox.ItemsSource = gradear;
+            //GroupBox.SelectedValuePath = "id";
+            //GroupBox.DisplayMemberPath = "name";
         }
     }
 }

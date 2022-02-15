@@ -49,7 +49,7 @@ namespace Final_Project_WPF.DAL
             //מעדכנת את הלקוח במסד הנתונים
 
             string str = "UPDATE Grade SET"
-            + $" [FirstName] = N'{Level}'"
+            + $" [Level] = N'{Level}'"
             + $" WHERE ID = {id}";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);

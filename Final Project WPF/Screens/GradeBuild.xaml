@@ -430,7 +430,7 @@
             </Grid.ColumnDefinitions>
 
             <Label x:Name="GradeManeg" Content="Group Management" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="241" FontSize="24" />
-            <ListBox x:Name="listbox_Grade" Margin="452,64,47,94"/>
+            <ListBox x:Name="listbox_Grade" MouseDoubleClick="ListBox_Client_MouseDoubleClick"  Margin="452,64,47,94" />
             <Label Content="Grades" HorizontalAlignment="Left" Margin="455,20,0,0" VerticalAlignment="Top" Width="83" FontSize="20" Background="White" />
             <Button Style="{DynamicResource RoundedButton}" x:Name="save" HorizontalAlignment="Left" Margin="668,591,0,0" VerticalAlignment="Top" Height="48" Width="96" Click="Save_Button_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Background="#FF63CCF1" >
                 <Label Content="Save"/>
@@ -440,6 +440,7 @@
             <Label Content="Group Name" HorizontalAlignment="Left" Margin="22,89,0,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label x:Name="IDLabel" Content="0" HorizontalAlignment="Left" Margin="94,562,0,0" VerticalAlignment="Top"/>
             <Label Content="Group ID" HorizontalAlignment="Left" Margin="28,562,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Left" Margin="486,563,0,0" VerticalAlignment="Top" Height="21" Width="232" Click="Delete_Click"/>
 
 
         </Grid>

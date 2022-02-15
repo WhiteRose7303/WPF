@@ -561,7 +561,7 @@
     <Border Background="White" BorderThickness="1" CornerRadius="12">
         <Grid x:Name="___Client" Margin="0,0,0,-6">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Label x:Name="Client_Registor" Content="Client Register" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="47" Width="181" FontSize="24" />
@@ -603,7 +603,7 @@
             <Label Content="Teacher" HorizontalAlignment="Left" Margin="316,405,0,0" VerticalAlignment="Top" BorderBrush="Black" Width="58"/>
             <CheckBox x:Name="IsTeacher" Content="Yes" HorizontalAlignment="Left" Margin="375,403,0,0" VerticalAlignment="Top" Width="59" Height="32" />
             <Button x:Name="GroupManeg" Content="Group Managment" HorizontalAlignment="Left" Margin="147,608,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="GradeManeg_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" />
-            <ComboBox x:Name="GroupBox" HorizontalAlignment="Left" Margin="224,450,0,0" VerticalAlignment="Top" Width="173" Height="27"/>
+            <ComboBox x:Name="GroupBox"  Text="name" SelectedValuePath="content"  HorizontalAlignment="Left" Margin="224,450,0,0" VerticalAlignment="Top" Width="173" Height="27"/>
             <Label Content="Group" Margin="144,450,598,0" VerticalAlignment="Top" BorderBrush="Black"/>
 
         </Grid>
