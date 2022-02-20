@@ -1,4 +1,4 @@
-﻿<Window x:Class="Final_Project_WPF.MainWindow"
+﻿<Window x:Name="window" x:Class="Final_Project_WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -603,8 +603,9 @@
             <Label Content="Teacher" HorizontalAlignment="Left" Margin="316,405,0,0" VerticalAlignment="Top" BorderBrush="Black" Width="58"/>
             <CheckBox x:Name="IsTeacher" Content="Yes" HorizontalAlignment="Left" Margin="375,403,0,0" VerticalAlignment="Top" Width="59" Height="32" />
             <Button x:Name="GroupManeg" Content="Group Managment" HorizontalAlignment="Left" Margin="147,608,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="GradeManeg_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" />
-            <ComboBox x:Name="GroupBox"  Text="name" SelectedValuePath="content"  HorizontalAlignment="Left" Margin="224,450,0,0" VerticalAlignment="Top" Width="173" Height="27"/>
+            <ComboBox x:Name="GroupBox" Text="name" HorizontalAlignment="Left" Margin="224,450,0,0" VerticalAlignment="Top" Width="173" Height="27" />
             <Label Content="Group" Margin="144,450,598,0" VerticalAlignment="Top" BorderBrush="Black"/>
+            <Label x:Name="GradeID" HorizontalAlignment="Left" Margin="136,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.828"/>
 
         </Grid>
     </Border>

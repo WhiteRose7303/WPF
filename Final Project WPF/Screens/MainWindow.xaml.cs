@@ -276,7 +276,7 @@ namespace Final_Project_WPF
                 StudentID_textbox.Text = client.IdentityNumber.ToString();
                 TB_Phone.Text = client.Phone;
                 Password.Text = client.Pass.ToString();
-                GroupBox.SelectedValue = client.Group.ID;
+                GroupBox.SelectedItem = client.Group.ID;
                 if (client.Isadmin.ToString() == "1")
                 {
                     Is_admin.IsChecked = true;
