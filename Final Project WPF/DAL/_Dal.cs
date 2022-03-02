@@ -68,7 +68,9 @@ internal class Dal
         return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf';Integrated Security=True";
         
         //בניית מחרוזת הקישור
+#pragma warning disable CS0162 // Unreachable code detected
         SqlConnectionStringBuilder cString = new SqlConnectionStringBuilder();
+#pragma warning restore CS0162 // Unreachable code detected
 
         cString.DataSource = @"(localdb)\.";
         cString.AttachDBFilename = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + @"\Database1.mdf";

@@ -276,7 +276,7 @@ namespace Final_Project_WPF
                 StudentID_textbox.Text = client.IdentityNumber.ToString();
                 TB_Phone.Text = client.Phone;
                 Password.Text = client.Pass.ToString();
-                GroupBox.SelectedItem = client.Group.ID;
+                GroupBox.SelectedIndex = FindGroupIndex(client.Group.ID);
                 if (client.Isadmin.ToString() == "1")
                 {
                     Is_admin.IsChecked = true;
@@ -400,10 +400,24 @@ namespace Final_Project_WPF
 
             GradeArr gradear = new GradeArr();
             gradear.Fill();
-
             GroupBox.ItemsSource = gradear;
+
             //GroupBox.SelectedValuePath = "id";
-            //GroupBox.DisplayMemberPath = "name";
+            //GroupBox.DisplayMemberPath = "Name";
+            
+        }
+        public int FindGroupIndex(int id)
+        {
+            GradeArr gradear2 = GroupBox.ItemsSource as GradeArr;
+            for (int i = 0; i < gradear2.Count; i++)
+            {
+                if ((gradear2[i] as Grade).ID == id)
+                {
+                    return i;
+                }
+                return -1;
+            }
+            return -1;
         }
     }
 }
