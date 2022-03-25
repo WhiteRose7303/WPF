@@ -6,8 +6,20 @@
         xmlns:local="clr-namespace:Final_Project_WPF"
         mc:Ignorable="d"
         Title="Hello" WindowStartupLocation="CenterScreen" Height="550" Width="418" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" ResizeMode="NoResize" >
-    
+
     <Window.Resources>
+        <Style x:Key="SomeButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="CheckBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -125,6 +137,7 @@
             <Button x:Name="Login" Content="Teacher Login" HorizontalAlignment="Left" Margin="116,262,0,0" VerticalAlignment="Top" Height="63" Width="202" Background="#FF63CCF1" Style="{DynamicResource RoundedButton}" Click="Login_Click"/>
             <Button x:Name="Client_Managment" Content="Admin Managment" HorizontalAlignment="Left" Margin="116,357,0,0" VerticalAlignment="Top" Height="63" Width="202" Background="#FF63CCF1" Style="{DynamicResource RoundedButton}" Click="ClientManagment_click"/>
             <Button x:Name="Exit" Content="Exit" HorizontalAlignment="Left" Margin="101,448,0,0" VerticalAlignment="Top" Height="68" Width="232" Background="#FFD4D4D4" Style="{DynamicResource RoundedButton}" Click="Exit_Click"/>
+            <Button x:Name="Diagnostics_b" Content="" HorizontalAlignment="Left" Margin="8,520,0,0" VerticalAlignment="Top" Width="401" MouseDoubleClick="Diagnostics_MouseDoubleClick" BorderBrush="White" Background="White" Style="{DynamicResource SomeButtonStyle}"/>
 
         </Grid>
     </Border>

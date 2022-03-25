@@ -27,7 +27,7 @@ namespace Final_Project_WPF
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             //debug
-            DebugFill();
+            //DebugFill();
 
             ClientArrToForm();
         }
@@ -45,11 +45,11 @@ namespace Final_Project_WPF
                 //reseed
                 //Client_Dal.reseed();
                 //fill debug dataS
-                Client_Dal.Insert("Hadar", "Ovadia", "0", "0501234567", "1", "1234", "1", "me@hadarov.com","1",1);
-                Client_Dal.Insert("Israel", "Israeli", "1", "0501234567", "0", "0", "1", "test", "1", 1);
-                Client_Dal.Insert("Israela", "Israeli", "2", "0501234567", "0", "0", "1", "test@gmail.com", "1", 1);
-                Client_Dal.Insert("Dani", "Avdia", "3", "0501234567", "0", "0", "1", "test", "1", 1);
-                Client_Dal.Insert("rony", "old", "4", "0500000000", "0", "1234", "0", "rony@test.com", "1", 1);
+                Client_Dal.Insert("Hadar", "Ovadia", "0", "0501234567", "1", "1234", "1", "me@hadarov.com",null,7);
+                Client_Dal.Insert("Israel", "Israeli", "1", "0501234567", "0", "0", "1", "test", null, 7);
+                Client_Dal.Insert("Israela", "Israeli", "2", "0501234567", "0", "0", "1", "test@gmail.com", null , 7);
+                Client_Dal.Insert("Dani", "Avdia", "3", "0501234567", "0", "0", "1", "test", null, 7);
+                Client_Dal.Insert("rony", "old", "4", "0500000000", "0", "1234", "0", "rony@test.com", null, 7);
             }
         }
 
@@ -258,6 +258,7 @@ namespace Final_Project_WPF
             Email.Clear();
             Is_admin.IsChecked = false;
             aproved.IsChecked = false;
+            IsTeacher.IsChecked = false;
             IDLabel.Content = "0";
             Delete.IsEnabled = false;
             insert = false;
@@ -415,9 +416,17 @@ namespace Final_Project_WPF
                 {
                     return i;
                 }
-                return -1;
             }
             return -1;
+        }
+
+       
+
+        private void b_UserReport_Click(object sender, RoutedEventArgs e)
+        {
+            UserReport u = new UserReport();
+            u.Show();
+            this.Close();
         }
     }
 }

@@ -606,6 +606,7 @@
             <ComboBox x:Name="GroupBox" Text="name"  HorizontalAlignment="Left" Margin="224,450,0,0" VerticalAlignment="Top" Width="173" Height="27" />
             <Label Content="Group" Margin="144,450,598,0" VerticalAlignment="Top" BorderBrush="Black"/>
             <Label x:Name="GradeID" HorizontalAlignment="Left" Margin="136,573,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.828"/>
+            <Button x:Name="b_UserReport" Content="User Report" HorizontalAlignment="Left" Margin="267,609,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="b_UserReport_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" />
 
         </Grid>
     </Border>

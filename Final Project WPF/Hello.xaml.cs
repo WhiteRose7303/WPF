@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Final_Project_WPF.Screens;
 
 namespace Final_Project_WPF
 {
@@ -56,6 +57,13 @@ namespace Final_Project_WPF
             MainWindow h = new MainWindow();
             h.Show();
             this.Close();
+        }
+
+        private void Diagnostics_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Diagnostics d = new Diagnostics();
+            d.Show();
+            
         }
     }
 }
