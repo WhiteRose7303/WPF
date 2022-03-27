@@ -24,27 +24,20 @@ namespace Final_Project_WPF.Screens
     /// </summary>
     public partial class UserReport : Window
     {
-        Bitmap m_bitmap;
+        
 
         public UserReport()
         {
             InitializeComponent();
+            loadview();
         }
         
         private void loadview()
         {
-            GridView MyGrid = UserListView.View as GridView;
-            GridViewColumn gvc1 = new GridViewColumn();
-            gvc1.DisplayMemberBinding = new Binding("FirstName");
-            gvc1.Header = "FirstName";
-            gvc1.Width = 100;
-            MyGrid.Columns.Add(gvc1);
-            GridViewColumn gvc2 = new GridViewColumn();
-            gvc2.DisplayMemberBinding = new Binding("LastName");
-            gvc2.Header = "LastName";
-            gvc2.Width = 100;
-            MyGrid.Columns.Add(gvc2);
-
+            ClientArr CAR = new ClientArr();
+            CAR.Fill();
+            UserListView.Items.Clear();
+            UserListView.ItemsSource = CAR;            
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

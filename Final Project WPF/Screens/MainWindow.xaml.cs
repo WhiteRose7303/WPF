@@ -425,7 +425,7 @@ namespace Final_Project_WPF
         private void b_UserReport_Click(object sender, RoutedEventArgs e)
         {
             UserReport u = new UserReport();
-            u.Show();
+            u.ShowDialog();
             this.Close();
         }
     }

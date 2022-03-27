@@ -576,9 +576,9 @@
                 <GridView>
                     <GridViewColumn Header="FirstName" Width="120" DisplayMemberBinding="{Binding FirstName}" />
                     <GridViewColumn Header="LastName" Width="120" DisplayMemberBinding="{Binding LastName}" />
-                    <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}" />
+                    <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Email}" />
                     <GridViewColumn Header="Phone" Width="150" DisplayMemberBinding="{Binding Phone}" />
-                    <GridViewColumn Header="ID" Width="150" DisplayMemberBinding="{Binding ID}" />
+                    <GridViewColumn Header="ID" Width="150" DisplayMemberBinding="{Binding IdentityNumber}" />
                     <GridViewColumn Header="Group" Width="150" DisplayMemberBinding="{Binding Group}" />
                 </GridView>
             </ListView.View>

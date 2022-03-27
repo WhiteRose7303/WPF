@@ -62,7 +62,7 @@ namespace Final_Project_WPF
         private void Diagnostics_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Diagnostics d = new Diagnostics();
-            d.Show();
+            d.ShowDialog();
             
         }
     }

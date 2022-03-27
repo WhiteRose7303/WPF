@@ -29,5 +29,11 @@ namespace Final_Project_WPF.Screens
             MainWindow m = new MainWindow();
             m.DebugFill();
         }
+
+        private void OPENUSERREP_Click(object sender, RoutedEventArgs e)
+        {
+            UserReport u = new UserReport();
+            u.ShowDialog();
+        }
     }
 }
