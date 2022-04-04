@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Final_Project_WPF.DAL;
 using Final_Project_WPF.BL;
 using Final_Project_WPF.Screens;
+using Final_Project_WPF.Util;
+using System.ComponentModel;
 
 
 namespace Final_Project_WPF.Screens
@@ -30,14 +32,35 @@ namespace Final_Project_WPF.Screens
         {
             InitializeComponent();
             loadview();
+            Sortby.SelectionChanged += SelectionChanged;
+            Sortdir .SelectionChanged += SelectionChanged;
         }
-        
+
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Sort();
+        }
+
         private void loadview()
         {
             ClientArr CAR = new ClientArr();
             CAR.Fill();
             UserListView.Items.Clear();
-            UserListView.ItemsSource = CAR;            
+            UserListView.ItemsSource = CAR;
+
+            Sortby.ItemsSource = new string[] { "Name", "ID", "Group" };
+            Sortdir.ItemsSource = Enum.GetNames<ListSortDirection>();
+
+            UserListView.Items.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+
+        }
+
+        void Sort()
+        {
+            var sortprop = Sortby.SelectedItem.ToString();
+            var sortdir = Sortdir.SelectedItem.ToString() == "Ascending" ? ListSortDirection.Ascending : ListSortDirection.Descending;
+
+            UserListView.Items.SortDescriptions[0] = new SortDescription(sortprop, sortdir); 
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
@@ -61,27 +84,6 @@ namespace Final_Project_WPF.Screens
                 dlg.PrintVisual(this, "Certificate");
             }
         }
-        /*
-private void PopulateView()
-{
-ClientArr Clientar = new ClientArr();
-Clientar.Fill();
-
-Client p;
-ListViewItem LVI;
-for (int i = 0; i < Clientar.Count; i++)
-{
-p = Clientar[i] as Client;
-
-//יצירת פריט-תיבת-תצוגה
-//LVI = new ListViewItem(new[] { p.FirstName, p.LastName, p.Email, p.Phone, p.ID });
-//הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-
-UserListView.Items.Add(LVI);
-}
-}
-*/
-
 
     }
 }

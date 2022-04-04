@@ -563,7 +563,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="UserListView" Margin="0,-1,-70,73" RenderTransformOrigin="0.5,0.5">
+        <ListView x:Name="UserListView" Margin="0,-1,-70,73" RenderTransformOrigin="0.5,0.5" >
             <ListView.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -579,13 +579,15 @@
                     <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Email}" />
                     <GridViewColumn Header="Phone" Width="150" DisplayMemberBinding="{Binding Phone}" />
                     <GridViewColumn Header="ID" Width="150" DisplayMemberBinding="{Binding IdentityNumber}" />
-                    <GridViewColumn Header="Group" Width="150" DisplayMemberBinding="{Binding Group}" />
+                    <GridViewColumn Header="Group" Width="150" DisplayMemberBinding="{Binding GroupName}" />
                 </GridView>
             </ListView.View>
             <Button Content="Button"/>
         </ListView>
         <Button x:Name="BACK" Content="Go Back" HorizontalAlignment="Left" Margin="534,410,0,0" VerticalAlignment="Top" Height="29" Width="108" Click="GoBack_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" />
         <Button x:Name="Print" Content="Print" Margin="662,410,0,0" VerticalAlignment="Top" Height="29" Click="Print_Click" AutomationProperties.AccessKey="" AutomationProperties.Name="Save" Style="{DynamicResource RoundedButton}" Background="#FFA8AEB0" HorizontalAlignment="Left" Width="108" />
+        <ComboBox Name="Sortby" SelectedIndex="1" HorizontalAlignment="Left" Margin="38,416,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="Sortdir" SelectedIndex="0" HorizontalAlignment="Left" Margin="186,416,0,0" VerticalAlignment="Top" Width="120"/>
 
 
     </Grid>

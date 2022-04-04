@@ -17,6 +17,7 @@ namespace Final_Project_WPF.BL
         private string m_Email;
         private string m_Teacher;
         private Grade m_Group;
+        private string m_GroupName;
         private int m_ID;
         private SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = C: \Users\Hadar CS\source\repos\WPF\Final Project WPF\Database1.mdf; Integrated Security=True");
 
@@ -31,6 +32,7 @@ namespace Final_Project_WPF.BL
         public string Email { get => m_Email; set => m_Email = value; }
         public string Teacher { get => m_Teacher; set => m_Teacher = value; }
         internal Grade Group { get => m_Group; set => m_Group = value; }
+        public string GroupName { get => m_GroupName; set => m_GroupName = value; }
 
         public void Insert()
         {
@@ -73,7 +75,8 @@ namespace Final_Project_WPF.BL
             Aproved = dataRow["aproved"].ToString();
             Email = dataRow["Email"].ToString();
             Teacher = dataRow["Teacher"].ToString();
-            m_Group = new Grade(dataRow.GetParentRow("clientgroup"));
+            Group = new Grade(dataRow.GetParentRow("clientgroup"));
+            GroupName = Group.Name;
 
         }
 
